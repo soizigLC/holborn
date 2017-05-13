@@ -1,0 +1,10 @@
+---
+# Roles dependencies
+#
+# http://docs.ansible.com/galaxy.html#installing-multiple-roles-from-a-file
+# Install with `ansible-galaxy install -r requirements.yml`
+
+
+# Sublime Text
+- src: vaulttec.sublimetext
+- src: theNewFlesh.sublime-config

@@ -1,0 +1,17 @@
+---
+# Variables for development machines
+
+
+# Sublime Text
+
+sublimetext_build: 3126
+
+sublime_include_packages: true
+sublime_packages:
+  - "Package Control"
+  - "Markdown Light"
+  - "Markdown HTML Preview"
+  - "Markdown Preview"
+
+sublime_tab_size: 4
+sublime_translate_tabs_to_spaces: true

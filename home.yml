@@ -1,0 +1,10 @@
+---
+# Playbook for home development machine
+
+
+- name: Home development playbook
+  hosts: home
+
+  roles:
+    - vaulttec.sublimetext
+    - theNewFlesh.sublime-config

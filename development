@@ -1,0 +1,6 @@
+# Inventory for development machines
+
+
+[development]
+home		ansible_connection=local
+apologic	ansible_connection=local
