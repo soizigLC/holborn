@@ -1,0 +1,51 @@
+[user]
+    name = {{ gitconfig_user_name }}
+    email = {{ gitconfig_user_email }}
+[credential]
+    helper = store
+[core]
+    editor = vim
+    excludesFile = {{ ansible_user_dir }}/.git-ignore-global
+    autocrlf = input 
+[push]
+    default = simple
+[alias]
+    st = status
+
+    lag = log --all --graph --format='%C(cyan)%h %ci%Creset %C(magenta)%an%Creset -%C(auto)%d%Creset %s'
+
+    aa = add -A
+
+    rv = checkout --
+
+    # Suppression de branche local et/ou sur origin
+    db = branch -d
+    dbo = push -u origin --delete
+    dblo = !git branch -d $1 && git push -u origin --delete $1 && :
+
+    # Différences
+    diffw = diff --color-words
+    difft = difftool
+
+    # Alias git-svn
+    pulls = svn rebase
+    pushs = svn dcommit
+
+    # Liste des alias
+    alias = !git config -l | grep alias | cut -c 7-
+
+[diff]
+    tool = kdiff3
+[difftool]
+    prompt = false
+[difftool "kdiff3"]
+    cmd = kdiff3 $LOCAL $REMOTE
+    trustExitCode = false
+[merge]
+    tool = kdiff3
+[mergetool]
+    prompt = false
+[mergetool "kdiff3"]
+    cmd = kdiff3 $BASE $LOCAL $REMOTE -o $MERGED
+    keepBackup = false
+    trustExitCode = false

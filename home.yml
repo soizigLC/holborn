@@ -6,5 +6,6 @@
   hosts: home
 
   roles:
+    - gitconfig
     - vaulttec.sublimetext
     - theNewFlesh.sublime-config
