@@ -3,7 +3,3 @@
 
 
 ansible_ssh_user: sebastien
-
-
-gitconfig_user_name: Sébastien
-gitconfig_user_email: 27871201+SebastienM4j@users.noreply.github.com
