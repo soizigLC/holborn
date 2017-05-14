@@ -7,5 +7,6 @@
 
   roles:
     - gitconfig
+    - tilix
     - vaulttec.sublimetext
     - theNewFlesh.sublime-config

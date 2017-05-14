@@ -1,0 +1,27 @@
+---
+
+- name: tilix | add repository
+  become: true
+  shell: add-apt-repository ppa:webupd8team/terminix
+
+- name: tilix | update cache
+  become: true
+  apt:
+    update_cache: yes
+
+- name: tilix | installation
+  apt:
+    name: tilix
+    state: latest
+
+- name: tilix | dconf installation
+  apt:
+      name: dconf-cli
+
+- name: tilix | generation configuration
+  template:
+    src: ../templates/tilix.dconf.j2
+    dest: "{{ ansible_user_dir }}/.tilix.dconf"
+
+- name: tilix | configure
+  shell: dconf load /com/gexperts/Tilix/ < {{ ansible_user_dir }}/.tilix.dconf
