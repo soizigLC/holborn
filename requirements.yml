@@ -5,6 +5,9 @@
 # Install with `ansible-galaxy install -r requirements.yml`
 
 
+# Powerline
+- src: nass600.powerline
+
 # Sublime Text
 - src: vaulttec.sublimetext
 - src: theNewFlesh.sublime-config

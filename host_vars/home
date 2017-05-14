@@ -5,3 +5,4 @@
 ansible_ssh_user: sebastien
 
 tilix_rows: 53
+tilix_cols: 180
