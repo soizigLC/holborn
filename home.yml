@@ -8,7 +8,7 @@
   roles:
 
     # Git
-    - gitconfig
+    - git
 
     # Terminal
     - nass600.powerline

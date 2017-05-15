@@ -1,0 +1,21 @@
+---
+
+- name: installation | update cache
+  become: true
+  apt:
+    update_cache: yes
+
+- name: installation | install
+  apt:
+    name: git
+    state: latest
+
+- name: configuration | generate .gitconfig
+  template:
+    src: ../templates/gitconfig.j2
+    dest: "{{ ansible_user_dir }}/.gitconfig"
+
+- name: configuration | generate .git-ignore-global
+  template:
+    src: ../templates/git-ignore-global.j2
+    dest: "{{ ansible_user_dir }}/.git-ignore-global"
