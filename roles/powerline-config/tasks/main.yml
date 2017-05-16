@@ -1,5 +1,8 @@
 ---
 
+- name: installation | update if needed
+  shell: pip install --upgrade pip
+
 - name: configuration | copy configuration's files
   become: true
   copy:

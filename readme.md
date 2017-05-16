@@ -28,11 +28,6 @@ sudo apt-get install ansible
 * Cloner ce projet `git clone git@gitlab.com:smouquet/holborn.git`
 * Se placer dans le répertoire du projet `cd holborn`
 
-### TODOs
-
-* Après l'installation de powerline, lancer la commande `pip install --upgrade pip`
-* Configurer Powerline avec ma configuration actuelle
-
 
 Utilisation
 -----------
