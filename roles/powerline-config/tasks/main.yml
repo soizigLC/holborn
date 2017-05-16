@@ -15,3 +15,20 @@
     dest: "{{ powerline_config_dir }}/themes/shell/custom.json"
     owner: root
     group: staff
+
+- name: configuration | add daemon to .bashrc for root
+  become: true
+  blockinfile:
+    dest: /root/.bashrc
+    block: |
+      ############################################################
+      # Powerline configuration
+      ############################################################
+      powerline_info=$(pip show powerline-status | grep Location)
+      if [ -n "$powerline_info" ]; then
+          powerline_repo=${powerline_info#Location: }
+          powerline-daemon -q
+          POWERLINE_BASH_CONTINUATION=1
+          POWERLINE_BASH_SELECT=1
+          . ${powerline_repo}/powerline/bindings/bash/powerline.sh
+      fi
