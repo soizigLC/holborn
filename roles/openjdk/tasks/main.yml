@@ -1,0 +1,12 @@
+---
+
+- name: installation | update cache
+  become: true
+  apt:
+    update_cache: yes
+
+- name: installation | install
+  become: true
+  apt:
+    name: openjdk-{{ openjdk_version }}-jdk
+    state: latest
