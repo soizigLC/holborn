@@ -9,6 +9,7 @@
 
     # Git
     - git
+    - kdiff3
 
     # Terminal
     - nass600.powerline
