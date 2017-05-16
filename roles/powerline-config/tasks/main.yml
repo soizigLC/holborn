@@ -1,0 +1,17 @@
+---
+
+- name: configuration | copy configuration's files
+  become: true
+  copy:
+    src: ../files/
+    dest: "{{ powerline_config_dir }}"
+    owner: root
+    group: staff
+
+- name: configuration | generate themes/shell/custom.json
+  become: true
+  template:
+    src: ../templates/themes/shell/custom.json.j2
+    dest: "{{ powerline_config_dir }}/themes/shell/custom.json"
+    owner: root
+    group: staff

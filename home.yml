@@ -12,6 +12,7 @@
 
     # Terminal
     - nass600.powerline
+    - powerline-config
     - tilix
 
     # Sublime Text
