@@ -7,6 +7,9 @@
 
   roles:
 
+    # Chrome
+    - { role: cmprescott.chrome, become: true }
+
     # Git
     - git
     - kdiff3

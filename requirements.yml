@@ -5,6 +5,9 @@
 # Install with `ansible-galaxy install -r requirements.yml`
 
 
+# Chrome
+- src: cmprescott.chrome
+
 # Powerline
 - src: nass600.powerline
 
