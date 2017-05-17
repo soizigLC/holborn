@@ -6,7 +6,7 @@
 - name: configuration | copy configuration's files
   become: true
   copy:
-    src: ../files/
+    src: ../files/config_files/
     dest: "{{ powerline_config_dir }}"
     owner: root
     group: staff
@@ -14,10 +14,15 @@
 - name: configuration | generate themes/shell/custom.json
   become: true
   template:
-    src: ../templates/themes/shell/custom.json.j2
+    src: ../templates/config_files/themes/shell/custom.json.j2
     dest: "{{ powerline_config_dir }}/themes/shell/custom.json"
     owner: root
     group: staff
+
+- name: configuration | copy config.json for user
+  copy:
+    src: ../files/config.json
+    dest: "{{ ansible_user_dir }}/.config/powerline/config.json"
 
 - name: configuration | add daemon to .bashrc for root
   become: true
