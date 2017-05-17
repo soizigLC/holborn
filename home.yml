@@ -23,5 +23,6 @@
     - vaulttec.sublimetext
     - theNewFlesh.sublime-config
 
-    # JDK
+    # Java
     - openjdk
+    - eclipse

@@ -1,0 +1,27 @@
+---
+
+- name: installation | download archive
+  get_url:
+    url: "{{ eclipse_url }}"
+    dest: /tmp/eclipse.tar.gz
+
+- name: installation | create parent directory
+  become: true
+  file:
+    path: /opt/eclipse
+    state: directory
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+
+- name: installation | unarchive
+  unarchive:
+    src: /tmp/eclipse.tar.gz
+    dest: /opt/eclipse
+
+- name: installation | install in place
+  shell: mv /opt/eclipse/eclipse/ /opt/eclipse/{{ eclipse_version }}
+
+- name: installation | create menu
+  template:
+    src: ../templates/eclipse.desktop.j2
+    dest: "{{ ansible_user_dir }}/.local/share/applications/eclipse-{{ eclipse_version }}.desktop"

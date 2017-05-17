@@ -1,0 +1,5 @@
+---
+
+- name: installation | install plugins
+  shell: /opt/eclipse/{{ eclipse_version }}/eclipse -application org.eclipse.equinox.p2.director -noSplash -repository {{ item.repo }} -installIUs {{ item.feature }}
+  with_items: "{{ eclipse_plugins }}"

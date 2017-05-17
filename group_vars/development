@@ -15,3 +15,9 @@ sublime_packages:
 
 sublime_tab_size: 4
 sublime_translate_tabs_to_spaces: true
+
+
+# Eclipse
+
+eclipse_plugins:
+  - { repo: 'http://download.eclipse.org/buildship/updates/e46/releases/2.x', feature: 'org.eclipse.buildship.feature.group' }

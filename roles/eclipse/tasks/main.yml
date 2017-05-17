@@ -1,0 +1,11 @@
+---
+
+- name: preparation | check if already installed
+  stat:
+    path: /opt/eclipse/{{ eclipse_version }}
+  register: eclipse_installed
+
+- include: installation.yml
+  when: eclipse_installed.stat.isdir is not defined
+
+- include: features.yml
