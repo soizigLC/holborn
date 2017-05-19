@@ -20,4 +20,31 @@ sublime_translate_tabs_to_spaces: true
 # Eclipse
 
 eclipse_plugins:
+
+  # Buildship: Eclipse Plug-ins for Gradle
   - { repo: 'http://download.eclipse.org/buildship/updates/e46/releases/2.x', feature: 'org.eclipse.buildship.feature.group' }
+  # Minimalist Gradle Editor
+  - { repo: 'http://www.nodeclipse.org/updates/', feature: 'org.nodeclipse.enide.editors.gradle.feature.feature.group' }
+
+  # YEdit Feature
+  - { repo: 'http://dadacoalition.org/yedit', feature: 'org.dadacoalition.yedit.feature.feature.group' }
+
+  # Eclipse Color Theme
+  - { repo: 'http://eclipse-color-theme.github.com/update', feature: 'com.github.eclipsecolortheme.feature.feature.group' }
+  # Overview Feature
+  - { repo: 'http://cdn.rawgit.com/sandipchitale/sandipchitaleseclipseplugins/master/text.overview.updatesite/site.xml', feature: 'text.overview.feature.feature.group' }
+
+  # Angular2 Eclipse
+  - { repo: 'http://oss.opensagres.fr/angular2-eclipse/1.2.0/', feature: 'angular2-feature.feature.group' }
+  # Angular IDE
+  #- { repo: 'http://www.genuitec.com/updates/webclipse/ci/', feature: '' }
+
+  # How to find plugins informations :
+  # - Search plugin in marketplace and install it
+  # - Go to `Help/Installation Details`, select the plugin et `Properties/General Information`
+  # - Copy the `Identifier` : it's the `feature` value
+  # - Got to on the web markplace https://marketplace.eclipse.org/search/site
+  # - Search the plugin
+  # - Copy `mpc_install` value of the install link (sample : http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=2306961)
+  # - Go to this URL `http://marketplace.eclipse.org/node/2306961/api/p` with the right `mpc_install` code
+  # - Copy the `updateurl` value : it's the `repo` value
