@@ -16,7 +16,11 @@ dirs_to_delete:
 
 dirs_to_create:
   - { path: '/home/sebastien/workspace/private', owner: 'sebastien', group: 'sebastien' }
+  - { path: '/home/sebastien/workspace/private/archived', owner: 'sebastien', group: 'sebastien' }
   - { path: '/home/sebastien/workspace/apologic', owner: 'sebastien', group: 'sebastien' }
+  - { path: '/home/sebastien/workspace/apologic/lswa', owner: 'sebastien', group: 'sebastien' }
+  - { path: '/home/sebastien/workspace/apologic/spoutnik', owner: 'sebastien', group: 'sebastien' }
+  - { path: '/home/sebastien/workspace/apologic/poc-gestion-versions', owner: 'sebastien', group: 'sebastien' }
   - { path: '/home/sebastien/download', owner: 'sebastien', group: 'sebastien' }
 
 

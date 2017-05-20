@@ -6,3 +6,10 @@ ansible_ssh_user: sebastien
 
 tilix_rows: 53
 tilix_cols: 180
+
+archived_projects: false
+
+apologic_lswa: false
+apologic_spoutnik: false
+apologic_costarica: false
+apologic_poc_gestion_verions: false
