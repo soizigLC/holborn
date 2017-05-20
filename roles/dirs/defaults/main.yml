@@ -1,0 +1,7 @@
+---
+
+dirs_to_delete: []
+#  - { path: '/path/to/dir' }
+
+dirs_to_create: []
+#  - { path: '/path/to/dir', owner: 'owner', group: 'group' }

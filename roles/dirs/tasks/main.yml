@@ -1,0 +1,18 @@
+---
+
+- name: deletion
+  become: true
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ dirs_to_delete }}"
+
+- name: creation
+  become: true
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    recurse: true
+  with_items: "{{ dirs_to_create }}"

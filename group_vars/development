@@ -2,6 +2,24 @@
 # Variables for development machines
 
 
+# Directories
+
+dirs_to_delete:
+  - { path: '/home/sebastien/Bureau' }
+  - { path: '/home/sebastien/Documents' }
+  - { path: '/home/sebastien/Images' }
+  - { path: '/home/sebastien/Modèles' }
+  - { path: '/home/sebastien/Musique' }
+  - { path: '/home/sebastien/Public' }
+  - { path: '/home/sebastien/Téléchargements' }
+  - { path: '/home/sebastien/Vidéos' }
+
+dirs_to_create:
+  - { path: '/home/sebastien/workspace/private', owner: 'sebastien', group: 'sebastien' }
+  - { path: '/home/sebastien/workspace/apologic', owner: 'sebastien', group: 'sebastien' }
+  - { path: '/home/sebastien/download', owner: 'sebastien', group: 'sebastien' }
+
+
 # Sublime Text
 
 sublimetext_build: 3126

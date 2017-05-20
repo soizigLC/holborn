@@ -7,6 +7,9 @@
 
   roles:
 
+    # Directories
+    - dirs
+
     # Chrome
     - { role: cmprescott.chrome, become: true }
 
