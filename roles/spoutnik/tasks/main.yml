@@ -1,0 +1,28 @@
+---
+
+- name: directory
+  become: true
+  file:
+    path: "{{ workspace_dir }}/apologic/spoutnik"
+    state: directory
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+    recurse: true
+
+- name: clone
+  git:
+    repo: http://git.phmd.net/spoutnik/spoutnik-{{ item }}.git
+    dest: "{{ workspace_dir }}/apologic/spoutnik/{{ item }}"
+  with_items:
+    - accueil
+    - actualite
+    - administration
+    - cas
+    - cas-utilisateur
+    - configuration
+    - docs
+    - livrable
+    - parc-applicatif
+    - shared
+    - synchro-lswa
+    - tools

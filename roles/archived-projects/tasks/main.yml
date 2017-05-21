@@ -1,0 +1,16 @@
+---
+
+- name: directory
+  become: true
+  file:
+    path: "{{ workspace_dir }}/private/archived"
+    state: directory
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+    recurse: true
+
+- name: clone | archived projects
+  git:
+    repo: git@gitlab.com:SebastienM4j/{{ item }}.git
+    dest: "{{ workspace_dir }}/private/archived/{{ item }}"
+  with_items: "{{ archived_projects_list }}"

@@ -1,0 +1,16 @@
+---
+
+- name: directory
+  become: true
+  file:
+    path: "{{ workspace_dir }}/private"
+    state: directory
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+    recurse: true
+
+- name: clone
+  git:
+    repo: git@gitlab.com:SebastienM4j/holborn.git
+    dest: "{{ workspace_dir }}/private/holborn"
+    update: false

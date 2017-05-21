@@ -32,93 +32,13 @@
     - { role: eclipse }
     - { role: gradle }
 
-  tasks:
-
     # Private projects
-
-    - name: clone | holborn
-      git:
-        repo: git@gitlab.com:SebastienM4j/holborn.git
-        dest: /home/{{ ansible_ssh_user }}/workspace/private/holborn
-        update: false
-
-    - name: clone | kilburn
-      git:
-        repo: git@gitlab.com:SebastienM4j/kilburn.git
-        dest: /home/{{ ansible_ssh_user }}/workspace/private/kilburn
-
-    - name: clone | archived projects
-      when: archived_projects
-      git:
-        repo: git@gitlab.com:SebastienM4j/{{ item }}.git
-        dest: /home/{{ ansible_ssh_user }}/workspace/private/archived/{{ item }}
-      with_items:
-        - bakerloo
-        - bakerstreet
-        - ducktales
-        - lab-angular-extensible
-        - lab-atlassian-plugin-framework
-        - lab-classloader
-        - lab-javafx
-        - lab-spring-extensible
-        - lab-static-extensible
-        - tools-docker
-        - tools-linux
+    - { role: holborn }
+    - { role: kilburn }
+    - { role: archived-projects, when: archived_projects }
 
     # Apologic projects
-
-    - name: checkout | lswa
-      when: apologic_lswa
-      environment:
-        - LC_ALL: en_US.UTF-8
-        - LC_CTYPE: en_US.UTF-8
-      subversion:
-        repo: http://81.255.60.234/usvn/svn/lab4/trunk
-        dest: /home/{{ ansible_ssh_user }}/workspace/apologic/lswa/lswa
-        username: "{{ apologic_svn_login }}"
-        password: "{{ apologic_svn_password }}"
-
-    - name: clone | lswa/launcher
-      when: apologic_lswa
-      git:
-        repo: http://git.phmd.net/lswa/launcher.git
-        dest: /home/{{ ansible_ssh_user }}/workspace/apologic/lswa/launcher
-
-    - name: clone | spoutnik
-      when: apologic_spoutnik
-      git:
-        repo: http://git.phmd.net/spoutnik/spoutnik-{{ item }}.git
-        dest: /home/{{ ansible_ssh_user }}/workspace/apologic/spoutnik/{{ item }}
-      with_items:
-        - accueil
-        - actualite
-        - administration
-        - cas
-        - cas-utilisateur
-        - configuration
-        - docs
-        - livrable
-        - parc-applicatif
-        - shared
-        - synchro-lswa
-        - tools
-
-    - name: checkout | costarica
-      when: apologic_costarica
-      environment:
-        - LC_ALL: en_US.UTF-8
-        - LC_CTYPE: en_US.UTF-8
-      subversion:
-        repo: http://81.255.60.234/usvn/svn/costarica/trunk
-        dest: /home/{{ ansible_ssh_user }}/workspace/apologic/costarica
-        username: "{{ apologic_svn_login }}"
-        password: "{{ apologic_svn_password }}"
-
-    - name: clone | poc-gestion-versions
-      when: apologic_poc_gestion_verions
-      git:
-        repo: http://git.phmd.net/poc-gestion-versions/{{ item }}.git
-        dest: /home/{{ ansible_ssh_user }}/workspace/apologic/poc-gestion-versions/{{ item }}
-      with_items:
-        - docker
-        - git
+    - { role: lswa, when: lswa }
+    - { role: spoutnik, when: spoutnik }
+    - { role: costarica, when: costarica }
+    - { role: poc-gestion-versions, when: poc_gestion_versions }

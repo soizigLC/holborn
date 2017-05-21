@@ -15,12 +15,6 @@ dirs_to_delete:
   - { path: '/home/sebastien/Vidéos' }
 
 dirs_to_create:
-  - { path: '/home/sebastien/workspace/private', owner: 'sebastien', group: 'sebastien' }
-  - { path: '/home/sebastien/workspace/private/archived', owner: 'sebastien', group: 'sebastien' }
-  - { path: '/home/sebastien/workspace/apologic', owner: 'sebastien', group: 'sebastien' }
-  - { path: '/home/sebastien/workspace/apologic/lswa', owner: 'sebastien', group: 'sebastien' }
-  - { path: '/home/sebastien/workspace/apologic/spoutnik', owner: 'sebastien', group: 'sebastien' }
-  - { path: '/home/sebastien/workspace/apologic/poc-gestion-versions', owner: 'sebastien', group: 'sebastien' }
   - { path: '/home/sebastien/download', owner: 'sebastien', group: 'sebastien' }
 
 
@@ -70,3 +64,8 @@ eclipse_plugins:
   # - Copy `mpc_install` value of the install link (sample : http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=2306961)
   # - Go to this URL `http://marketplace.eclipse.org/node/2306961/api/p` with the right `mpc_install` code
   # - Copy the `updateurl` value : it's the `repo` value
+
+
+# Projects
+
+workspace_dir: /home/sebastien/workspace
