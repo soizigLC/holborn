@@ -32,6 +32,9 @@
     - { role: eclipse }
     - { role: gradle }
 
+    # Database
+    - { role: postgresql }
+
     # Private projects
     - { role: holborn }
     - { role: kilburn }
