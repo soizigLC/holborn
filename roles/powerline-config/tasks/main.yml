@@ -40,3 +40,17 @@
           POWERLINE_BASH_SELECT=1
           . ${powerline_repo}/powerline/bindings/bash/powerline.sh
       fi
+
+- name: configuration | check postgres is installed
+  stat:
+    path: /var/lib/postgresql
+  register: postgres_dir
+
+- name: configuration | add daemon to .bashrc for postgres
+  when: postgres_dir.stat.isdir is defined and postgres_dir.stat.isdir
+  become: true
+  copy:
+    src: ../files/default_bashrc
+    dest: /var/lib/postgresql/.bashrc
+    owner: postgres
+    group: postgres

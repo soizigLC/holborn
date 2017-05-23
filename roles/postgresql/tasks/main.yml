@@ -16,8 +16,41 @@
     update_cache: yes
 
 - name: installation | install
+  become: true
   apt:
     pkg: "{{ item }}-{{ postgresql_version }}"
   with_items:
     - postgresql
     - postgresql-contrib
+
+- name: installation | install dependencies for ansible
+  become: true
+  apt:
+    pkg: python-psycopg2
+
+- name: configuration | pg_hba.conf methods to trust
+  become: true
+  replace:
+    path: /etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf
+    regexp: "{{ item }}"
+    replace: '\1trust'
+  with_items:
+    - '^(local\s*all\s*postgres\s*)peer'
+    - '^(local\s*all\s*all\s*)peer'
+    - '^(host\s*all\s*all\s*127\.0\.0\.1/32\s*)md5'
+    - '^(host\s*all\s*all\s*::1/128\s*)md5'
+
+- name: configuration | restart
+  become: true
+  service:
+    name: postgresql
+    state: restarted
+
+- name: configuration | set default password
+  become: true
+  become_user: postgres
+  postgresql_user:
+    name: "{{ postgresql_user }}"
+    password: "{{ postgresql_password }}"
+    role_attr_flags: SUPERUSER
+    state: present

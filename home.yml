@@ -13,27 +13,27 @@
     # Chrome
     - { role: cmprescott.chrome, become: true }
 
+    # Sublime Text
+    - { role: vaulttec.sublimetext }
+    - { role: theNewFlesh.sublime-config }
+
     # SCM
     - { role: git }
     - { role: svn }
     - { role: kdiff3 }
+
+    # Database
+    - { role: postgresql }
 
     # Terminal
     - { role: nass600.powerline }
     - { role: powerline-config }
     - { role: tilix }
 
-    # Sublime Text
-    - { role: vaulttec.sublimetext }
-    - { role: theNewFlesh.sublime-config }
-
     # Java
     - { role: openjdk }
     - { role: eclipse }
     - { role: gradle }
-
-    # Database
-    - { role: postgresql }
 
     # Private projects
     - { role: holborn }
