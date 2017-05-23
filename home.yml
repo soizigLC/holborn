@@ -24,6 +24,7 @@
 
     # Database
     - { role: postgresql }
+    - { role: pgadmin4 }
 
     # Terminal
     - { role: nass600.powerline }

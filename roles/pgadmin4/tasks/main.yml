@@ -1,0 +1,54 @@
+---
+
+- name: installation | install python dependencies
+  become: true
+  apt:
+    pkg: "{{ item }}"
+  with_items:
+    - python-pip
+    - python-dev
+    - postgresql-server-dev-all
+
+- name: installation | install pip dependencies
+  become: true
+  pip:
+    name: pexpect
+    version: 3.3
+
+- name: installation | install pgadmin4
+  become: true
+  pip:
+    name: "{{ pgadmin4_pip_download }}"
+
+- name: configuration | create local config
+  become: true
+  shell: cd {{ pgadmin4_python_dist_dir }}/pgadmin4 && cp config.py config_local.py
+
+- name: configuration | set desktop mode
+  become: true
+  lineinfile:
+    path: "{{ pgadmin4_python_dist_dir }}/pgadmin4/config_local.py"
+    line: 'SERVER_MODE = False'
+
+# https://askubuntu.com/questions/831262/how-to-install-pgadmin-4-in-desktop-mode-on-ubuntu-16-04
+
+#- name: copy systemd service
+#  template: src=pgadmin4.service dest=/etc/systemd/system/.
+#  notify: restart pgadmin4
+
+#- name: reload systemd configs
+#  command: systemctl daemon-reload
+
+#- name: setup pgadmin
+#  become: true
+#  expect:
+#    command: /usr/bin/python {{ pgadmin4_python2_dist_dir }}/pgadmin4/setup.py
+#    creates: /root/.pgadmin
+#    echo: true
+#    responses:
+#      'Email address': "{{ pgadmin4_initial_user_email }}"
+#      '(?i).*password': "{{ pgadmin4_initial_user_password }}"
+
+#- name: start pgadmin4
+#  service: name=pgadmin4 state=started enabled=true
+#  become: true
