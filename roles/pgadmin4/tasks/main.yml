@@ -30,25 +30,19 @@
     path: "{{ pgadmin4_python_dist_dir }}/pgadmin4/config_local.py"
     line: 'SERVER_MODE = False'
 
-# https://askubuntu.com/questions/831262/how-to-install-pgadmin-4-in-desktop-mode-on-ubuntu-16-04
+- name: installation | generate init.d service
+  become: true
+  template:
+    src: ../templates/pgadmin4.j2
+    dest: /etc/init.d/pgadmin4
+    mode: 0755
 
-#- name: copy systemd service
-#  template: src=pgadmin4.service dest=/etc/systemd/system/.
-#  notify: restart pgadmin4
+- name: installation | register service
+  become: true
+  shell: systemctl daemon-reload
 
-#- name: reload systemd configs
-#  command: systemctl daemon-reload
-
-#- name: setup pgadmin
-#  become: true
-#  expect:
-#    command: /usr/bin/python {{ pgadmin4_python2_dist_dir }}/pgadmin4/setup.py
-#    creates: /root/.pgadmin
-#    echo: true
-#    responses:
-#      'Email address': "{{ pgadmin4_initial_user_email }}"
-#      '(?i).*password': "{{ pgadmin4_initial_user_password }}"
-
-#- name: start pgadmin4
-#  service: name=pgadmin4 state=started enabled=true
-#  become: true
+- name: start pgadmin4
+  become: true
+  service:
+    name: pgadmin4
+    state: started
