@@ -25,7 +25,7 @@ sudo apt-add-repository ppa:ansible/ansible
 sudo apt-get update
 sudo apt-get install ansible
 ```
-* Cloner ce projet `git clone git@gitlab.com:smouquet/holborn.git`
+* Cloner ce projet `git clone git@gitlab.com:SebastienM4j/holborn.git`
 * Se placer dans le répertoire du projet `cd holborn`
 
 
