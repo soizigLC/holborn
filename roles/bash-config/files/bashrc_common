@@ -1,0 +1,122 @@
+
+# =========================================================
+#   Postgres aliases
+# =========================================================
+
+alias psql='psql -U postgres'
+alias createdb='createdb -U postgres'
+alias dropdb='dropdb -U postgres'
+alias vacuumdb='vacuumdb -U postgres'
+alias pg_dump='pg_dump -U postgres'
+alias pg_restore='pg_restore -U postgres'
+
+copydb()
+{
+    template=$1
+    database=$2
+
+    createdb -T $1 $2
+}
+
+
+# =========================================================
+#   Perf utilities
+# =========================================================
+
+configlatency()
+{
+    action=$1
+    interface=$2
+    delay=$3
+
+    case "$action" in
+
+    "-a" | "add")
+        sudo tc qdisc add dev ${interface} root netem delay ${delay}ms ; tc -s qdisc
+        ;;
+
+    "-d" | "del")
+        sudo tc qdisc del dev ${interface} root netem ; tc -s qdisc
+        ;;
+
+    *)
+        echo "bad action..."
+        ;;
+
+    esac
+}
+
+alias latency30='configlatency -a lo 30'
+alias latency45='configlatency -a lo 45'
+alias latency0='configlatency -d lo'
+
+alias visualvm='nohup $JAVA_HOME/bin/jvisualvm -J-Xmx2048m > /dev/null 2>&1 &'
+
+
+# =========================================================
+#   Port knocking
+# =========================================================
+
+# Port knocking
+# Usage :
+#   knock host [-v] port1 port2 portn
+knock()
+{
+        HOST=$1
+        shift
+
+        VERBOSE=false
+        if [ $1 = "-v" ]; then
+                VERBOSE=true
+                shift
+        fi
+
+        KNOCK_PORTS=$@
+
+        for p in $KNOCK_PORTS
+        do
+                if [ "$VERBOSE" = true ]; then
+                        nmap -Pn --host_timeout 201 --max-retries 0 -p $p $HOST
+                else
+                        echo -ne "."
+                        nmap -Pn --host_timeout 201 --max-retries 0 -p $p $HOST > /dev/null
+                fi
+        done
+        echo ""
+}
+
+# SSH Port knocking
+# Usage :
+#    sshknock user@host [-p sshport] [-v] port1 port2 portn
+sshknock()
+{
+    SSH_TARGET=$1
+    SSH_HOST=$(echo "$SSH_TARGET" | sed s/^.*@//)
+    shift
+
+    if [ $1 = "-p" ]; then
+        shift
+        SSH_PORT=$1
+        shift
+    else
+        SSH_PORT=22
+    fi
+
+    VERBOSE=false
+    if [ $1 = "-v" ]; then
+        VERBOSE=true
+        shift
+    fi
+
+    SSH_KNOCK_PORTS=$@
+
+    if [ "$VERBOSE" = true ]; then
+        knock $SSH_HOST -v $SSH_KNOCK_PORTS
+    else
+        knock $SSH_HOST $SSH_KNOCK_PORTS
+    fi
+
+    ssh -p $SSH_PORT $SSH_TARGET
+}
+
+

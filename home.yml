@@ -26,11 +26,6 @@
     - { role: postgresql }
     - { role: pgadmin4 }
 
-    # Terminal
-    - { role: nass600.powerline }
-    - { role: powerline-config }
-    - { role: tilix }
-
     # Java
     - { role: openjdk }
     - { role: eclipse }
@@ -46,3 +41,9 @@
     - { role: spoutnik, when: spoutnik }
     - { role: costarica, when: costarica }
     - { role: poc-gestion-versions, when: poc_gestion_versions }
+
+    # Terminal
+    - { role: nass600.powerline }
+    - { role: powerline-config }
+    - { role: bash-config }
+    - { role: tilix }
