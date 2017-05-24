@@ -30,19 +30,13 @@
     path: "{{ pgadmin4_python_dist_dir }}/pgadmin4/config_local.py"
     line: 'SERVER_MODE = False'
 
-- name: installation | generate init.d service
+- name: installation | generate init.d script
   become: true
   template:
     src: ../templates/pgadmin4.j2
     dest: /etc/init.d/pgadmin4
     mode: 0755
 
-- name: installation | register service
-  become: true
-  shell: systemctl daemon-reload
-
 - name: start pgadmin4
   become: true
-  service:
-    name: pgadmin4
-    state: started
+  shell: /etc/init.d/pgadmin4 restart
