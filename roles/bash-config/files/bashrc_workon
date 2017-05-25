@@ -7,7 +7,70 @@
 
 
 # =========================================================
-#   PATH
+#   PATH / HOME
 # =========================================================
 
+export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which javac))))"
+export ORIGINAL_JAVA_HOME="$JAVA_HOME"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+for i in $(ls /opt/gradle); do export GRADLE_HOME="/opt/gradle/$i"; done
+export ORIGINAL_GRADLE_HOME="$GRADLE_HOME"
+export PATH="$GRADLE_HOME/bin:$PATH"
+
 ORIGINAL_PATH="$PATH"
+
+
+# =========================================================
+#   WORKON FUNCTIONS
+# =========================================================
+
+workon_log_title()
+{
+
+    echo -e "\e[39m  __      __       _            _ "
+    echo -e "\e[39m  \ \    / /__ _ _| |_____ _ _ | |"
+    echo -e "\e[39m   \ \/\/ / _ \ '_| / / _ \ ' \|_|"
+    echo -e "\e[39m    \_/\_/\___/_| |_\_\___/_||_(_)"
+    echo -e "\e[35m =============================================================================="
+}
+
+workon_log()
+{
+    echo -e "\e[32m * \e[36m$1 \e[39m$2"
+}
+
+workon_log_end()
+{
+    echo -e "\e[35m =============================================================================="
+}
+
+workon()
+{
+    alias=$1;
+    case "$alias" in
+        # @WORKON_CASE
+
+
+        *)
+            cd ~
+
+            export JAVA_HOME="$ORIGINAL_JAVA_HOME"
+            export GRADLE_HOME="$ORIGINAL_GRADLE_HOME"
+            export PATH="$ORIGINAL_PATH"
+
+            workon_log_title
+
+            workon_log "nothing..."
+            pwd
+            
+            workon_log "JAVA"
+            java -version
+
+            workon_log "GRADLE" "$(gradle -version)"
+
+            workon_log_end
+            ;;
+
+    esac
+}
