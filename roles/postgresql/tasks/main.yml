@@ -52,3 +52,21 @@
     password: "{{ postgresql_password }}"
     role_attr_flags: SUPERUSER
     state: present
+
+- name: configuration | powerline daemon for postgres
+  become: true
+  blockinfile:
+    dest: /var/lib/postgresql/.bashrc
+    create: true
+    owner: postgres
+    group: postgres
+    marker: "# {mark} ANSIBLE POWERLINE"
+    block: |
+      powerline_info=$(pip show powerline-status | grep Location)
+      if [ -n "$powerline_info" ]; then
+          powerline_repo=${powerline_info#Location: }
+          powerline-daemon -q
+          POWERLINE_BASH_CONTINUATION=1
+          POWERLINE_BASH_SELECT=1
+          . ${powerline_repo}/powerline/bindings/bash/powerline.sh
+      fi
