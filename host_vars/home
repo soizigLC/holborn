@@ -2,7 +2,13 @@
 # Variables for home development machine
 
 
-ansible_ssh_user: sebastien
+# Terminal
+
+tilix_rows: 53
+tilix_cols: 180
+
+bashrc_workon_opts:
+  - { name: 'GRADLE_OPTS', value: '-Xmx512m -Dorg.gradle.daemon=true' }
 
 
 # Projects
@@ -13,12 +19,3 @@ lswa: false
 spoutnik: false
 costarica: false
 poc_gestion_versions: false
-
-
-# Terminal
-
-tilix_rows: 53
-tilix_cols: 180
-
-bashrc_workon_opts:
-  - { name: 'GRADLE_OPTS', value: '-Xmx512m -Dorg.gradle.daemon=true' }

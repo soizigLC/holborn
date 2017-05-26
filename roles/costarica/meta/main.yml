@@ -1,2 +1,5 @@
 ---
-# Costarica project installation role
+# Costarica project installation and configuration role
+
+dependencies:
+  - { role: svn }

@@ -1,2 +1,8 @@
 ---
-# Kilburn project installation role
+# Kilburn project installation and configuration role
+
+dependencies:
+  - role: eclipse
+    eclipse_plugins:
+      # Angular2 Eclipse
+      - { repo: 'http://oss.opensagres.fr/angular2-eclipse/1.2.0/', feature: 'angular2-feature.feature.group' }

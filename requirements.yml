@@ -5,11 +5,11 @@
 # Install with `ansible-galaxy install -r requirements.yml`
 
 
-# Chrome
-- src: cmprescott.chrome
-
 # Powerline
 - src: nass600.powerline
+
+# Chrome
+- src: cmprescott.chrome
 
 # Sublime Text
 - src: vaulttec.sublimetext

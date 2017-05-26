@@ -10,8 +10,8 @@
   file:
     path: /opt/gradle
     state: directory
-    owner: "{{ ansible_ssh_user }}"
-    group: "{{ ansible_ssh_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
 
 - name: installation | unarchive
   unarchive:
@@ -25,3 +25,20 @@
   file:
     path: /tmp/gradle.zip
     state: absent
+
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate env vars in .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @PATHOME"
+    marker: "# {mark} ANSIBLE GRADLE WORKON"
+    block: |
+      export GRADLE_HOME="/opt/gradle/{{ gradle_version }}"
+      export ORIGINAL_GRADLE_HOME="$GRADLE_HOME"
+      export PATH="$GRADLE_HOME/bin:$PATH"

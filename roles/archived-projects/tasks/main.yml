@@ -5,8 +5,8 @@
   file:
     path: "{{ workspace_dir }}/private/archived"
     state: directory
-    owner: "{{ ansible_ssh_user }}"
-    group: "{{ ansible_ssh_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     recurse: true
 
 - name: clone | archived projects
@@ -14,3 +14,34 @@
     repo: git@gitlab.com:SebastienM4j/{{ item }}.git
     dest: "{{ workspace_dir }}/private/archived/{{ item }}"
   with_items: "{{ archived_projects_list }}"
+
+
+- name: configuration | generate archived projects .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @WORKON_CASE"
+    marker: "# {mark} ANSIBLE ARCHIVED-PROJECTS WORKON"
+    block: |
+      archived)
+          cd "{{ workspace_dir }}/private/archived"
+
+          export JAVA_HOME="$ORIGINAL_JAVA_HOME"
+          export GRADLE_HOME="$ORIGINAL_GRADLE_HOME"
+          export PATH="$ORIGINAL_PATH"
+
+          workon_log_title
+
+          workon_log "Archived"
+          pwd
+
+          workon_log "GIT"
+          git --version
+
+          workon_log "JAVA"
+          java -version
+
+          workon_log "GRADLE" "$(gradle -version)"
+
+          workon_log_end
+          ;;

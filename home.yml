@@ -10,6 +10,12 @@
     # Directories
     - { role: dirs }
 
+    # Terminal
+    - { role: tilix }
+    - { role: nass600.powerline }
+    - { role: powerline }
+    - { role: bash }
+
     # Chrome
     - { role: cmprescott.chrome, become: true }
 
@@ -19,7 +25,6 @@
 
     # SCM
     - { role: git }
-    - { role: svn }
     - { role: kdiff3 }
 
     # Database
@@ -28,8 +33,8 @@
 
     # Java
     - { role: openjdk }
-    - { role: eclipse }
     - { role: gradle }
+    - { role: eclipse }
 
     # Private projects
     - { role: holborn }
@@ -41,9 +46,3 @@
     - { role: spoutnik, when: spoutnik }
     - { role: costarica, when: costarica }
     - { role: poc-gestion-versions, when: poc_gestion_versions }
-
-    # Terminal
-    - { role: nass600.powerline }
-    - { role: powerline-config }
-    - { role: bash-config }
-    - { role: tilix }

@@ -5,8 +5,8 @@
   file:
     path: "{{ workspace_dir }}/apologic/lswa"
     state: directory
-    owner: "{{ ansible_ssh_user }}"
-    group: "{{ ansible_ssh_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     recurse: true
 
 - name: checkout | lswa
@@ -23,3 +23,37 @@
   git:
     repo: http://git.phmd.net/lswa/launcher.git
     dest: "{{ workspace_dir }}/apologic/lswa/launcher"
+
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate lswa .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @WORKON_CASE"
+    marker: "# {mark} ANSIBLE LSWA WORKON"
+    block: |
+      apoweb|lswa)
+          cd "{{ workspace_dir }}/apologic/lswa"
+
+          # TODO install JDK 7 and ANT
+          export JAVA_HOME="$ORIGINAL_JAVA_HOME"
+          export GRADLE_HOME="$ORIGINAL_GRADLE_HOME"
+          export PATH="$ORIGINAL_PATH"
+
+          workon_log_title
+
+          workon_log "LSWA"  
+          pwd
+
+          workon_log "JAVA"
+          java -version
+
+          workon_log "GRADLE" "$(gradle -version)"
+
+          workon_log_end
+          ;;

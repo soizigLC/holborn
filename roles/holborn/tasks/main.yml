@@ -5,8 +5,8 @@
   file:
     path: "{{ workspace_dir }}/private"
     state: directory
-    owner: "{{ ansible_ssh_user }}"
-    group: "{{ ansible_ssh_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     recurse: true
 
 - name: clone
@@ -14,3 +14,37 @@
     repo: git@gitlab.com:SebastienM4j/holborn.git
     dest: "{{ workspace_dir }}/private/holborn"
     update: false
+
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate holborn .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @WORKON_CASE"
+    marker: "# {mark} ANSIBLE HOLBORN WORKON"
+    block: |
+      holborn|hlb)
+          cd "{{ workspace_dir }}/private/holborn"
+
+          export JAVA_HOME="$ORIGINAL_JAVA_HOME"
+          export GRADLE_HOME="$ORIGINAL_GRADLE_HOME"
+          export PATH="$ORIGINAL_PATH"
+
+          workon_log_title
+
+          workon_log "Holborn"  
+          pwd
+
+          workon_log "GIT"
+          git --version
+
+          workon_log "ANSIBLE"
+          ansible --version
+
+          workon_log_end
+          ;;
