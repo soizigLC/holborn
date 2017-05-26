@@ -14,7 +14,7 @@
     - { role: tilix }
     - { role: nass600.powerline }
     - { role: powerline }
-    - { role: bash-config }
+    - { role: bash }
 
     # Chrome
     - { role: cmprescott.chrome, become: true }

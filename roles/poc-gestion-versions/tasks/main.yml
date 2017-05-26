@@ -16,3 +16,34 @@
   with_items:
     - docker
     - git
+
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate poc-gestion-versions .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @WORKON_CASE"
+    marker: "# {mark} ANSIBLE POC-GESTION-VERSION WORKON"
+    block: |
+      poc-gestion-versions|pgv)
+          cd "{{ workspace_dir }}/apologic/poc-gestion-versions"
+
+          export JAVA_HOME="$ORIGINAL_JAVA_HOME"
+          export GRADLE_HOME="$ORIGINAL_GRADLE_HOME"
+          export PATH="$ORIGINAL_PATH"
+
+          workon_log_title
+
+          workon_log "POC Gestion des Versions"  
+          pwd
+
+          workon_log "GIT"
+          git --version
+
+          workon_log_end
+          ;;

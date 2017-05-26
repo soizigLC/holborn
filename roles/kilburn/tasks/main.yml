@@ -13,3 +13,39 @@
   git:
     repo: git@gitlab.com:SebastienM4j/kilburn.git
     dest: "{{ workspace_dir }}/private/kilburn"
+
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate kilburn .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @WORKON_CASE"
+    marker: "# {mark} ANSIBLE KILBURN WORKON"
+    block: |
+      kilburn|klb)
+          cd "{{ workspace_dir }}/private/kilburn"
+
+          export JAVA_HOME="$ORIGINAL_JAVA_HOME"
+          export GRADLE_HOME="$ORIGINAL_GRADLE_HOME"
+          export PATH="$ORIGINAL_PATH"
+
+          workon_log_title
+
+          workon_log "Kilburn"  
+          pwd
+
+          workon_log "GIT"
+          git --version
+
+          workon_log "JAVA"
+          java -version
+
+          workon_log "GRADLE" "$(gradle -version)"
+
+          workon_log_end
+          ;;

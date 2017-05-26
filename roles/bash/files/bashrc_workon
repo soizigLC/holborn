@@ -10,13 +10,16 @@
 #   PATH / HOME
 # =========================================================
 
-export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which javac))))"
-export ORIGINAL_JAVA_HOME="$JAVA_HOME"
-export PATH="$JAVA_HOME/bin:$PATH"
+#export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which javac))))"
+#export ORIGINAL_JAVA_HOME="$JAVA_HOME"
+#export PATH="$JAVA_HOME/bin:$PATH"
 
-for i in $(ls /opt/gradle); do export GRADLE_HOME="/opt/gradle/$i"; done
-export ORIGINAL_GRADLE_HOME="$GRADLE_HOME"
-export PATH="$GRADLE_HOME/bin:$PATH"
+#for i in $(ls /opt/gradle); do export GRADLE_HOME="/opt/gradle/$i"; done
+#export ORIGINAL_GRADLE_HOME="$GRADLE_HOME"
+#export PATH="$GRADLE_HOME/bin:$PATH"
+
+# @PATHOME
+
 
 ORIGINAL_PATH="$PATH"
 

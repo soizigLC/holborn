@@ -1,0 +1,28 @@
+---
+
+- name: configuration | import other bashrc files
+  blockinfile:
+    path: "{{ ansible_user_dir }}/.bashrc"
+    marker: "# {mark} ANSIBLE BASH-CONFIG"
+    block: |
+      for i in $(ls -a ~ | grep -v .bash_aliases | grep .bashrc_)
+      do
+          source ~/$i
+      done
+
+- name: configuration | copy .bashrc_common
+  copy:
+    src: ../files/bashrc_common
+    dest: "{{ ansible_user_dir }}/.bashrc_common"
+
+- name: configuration | copy .bashrc_workon
+  copy:
+    src: ../files/bashrc_workon
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+
+- name: configuration | generate opts in .bashrc_workon
+  lineinfile:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @OPTS"
+    line: export {{ item.name }}="{{ item.value }}"
+  with_items: "{{ bashrc_workon_opts }}"
