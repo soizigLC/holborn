@@ -2,6 +2,10 @@
 # Variables for development machines
 
 
+ansible_user: sebastien
+ansible_ssh_user: sebastien
+
+
 # Directories
 
 dirs_to_delete:

@@ -27,7 +27,7 @@
 - name: configuration | set desktop mode
   become: true
   lineinfile:
-    path: "{{ pgadmin4_python_dist_dir }}/pgadmin4/config_local.py"
+    dest: "{{ pgadmin4_python_dist_dir }}/pgadmin4/config_local.py"
     line: 'SERVER_MODE = False'
 
 - name: installation | generate init.d script

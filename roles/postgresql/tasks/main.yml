@@ -28,6 +28,7 @@
   apt:
     pkg: python-psycopg2
 
+
 - name: configuration | pg_hba.conf methods to trust
   become: true
   replace:

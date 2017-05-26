@@ -10,8 +10,8 @@
   file:
     path: /opt/gradle
     state: directory
-    owner: "{{ ansible_ssh_user }}"
-    group: "{{ ansible_ssh_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
 
 - name: installation | unarchive
   unarchive:
