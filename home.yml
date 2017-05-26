@@ -25,7 +25,6 @@
 
     # SCM
     - { role: git }
-    - { role: svn }
     - { role: kdiff3 }
 
     # Database
