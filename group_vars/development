@@ -50,11 +50,6 @@ eclipse_plugins:
   # Overview Feature
   - { repo: 'http://cdn.rawgit.com/sandipchitale/sandipchitaleseclipseplugins/master/text.overview.updatesite/site.xml', feature: 'text.overview.feature.feature.group' }
 
-  # Angular2 Eclipse
-  - { repo: 'http://oss.opensagres.fr/angular2-eclipse/1.2.0/', feature: 'angular2-feature.feature.group' }
-  # Angular IDE
-  #- { repo: 'http://www.genuitec.com/updates/webclipse/ci/', feature: '' }
-
   # How to find plugins informations :
   # - Search plugin in marketplace and install it
   # - Go to `Help/Installation Details`, select the plugin et `Properties/General Information`
