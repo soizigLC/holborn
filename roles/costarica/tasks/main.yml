@@ -1,6 +1,6 @@
 ---
 
-- name: directory
+- name: installation | directory
   become: true
   file:
     path: "{{ workspace_dir }}/apologic"
@@ -9,7 +9,7 @@
     group: "{{ ansible_user }}"
     recurse: true
 
-- name: checkout
+- name: installation | checkout
   environment:
     - LC_ALL: en_US.UTF-8
     - LC_CTYPE: en_US.UTF-8
@@ -18,6 +18,11 @@
     dest: "{{ workspace_dir }}/apologic/costarica"
     username: "{{ apologic_svn_login }}"
     password: "{{ apologic_svn_password }}"
+
+- name: installation | create database
+  when: costarica_create_db
+  postgresql_db:
+    name: costarica
 
 
 - name: configuration | check .bashrc_workon is present
@@ -43,6 +48,9 @@
 
           workon_log "Costarica"  
           pwd
+
+          workon_log "SVN"
+          svn --version --quiet
 
           workon_log "JAVA"
           java -version

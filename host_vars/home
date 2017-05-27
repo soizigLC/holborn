@@ -16,6 +16,12 @@ bashrc_workon_opts:
 archived_projects: false
 
 lswa: false
-spoutnik: false
+lswa_create_db: false
+
 costarica: false
+costarica_create_db: false
+
+spoutnik: false
+spoutnik_create_db: false
+
 poc_gestion_versions: false

@@ -1,6 +1,6 @@
 ---
 
-- name: directory
+- name: installation | directory
   become: true
   file:
     path: "{{ workspace_dir }}/apologic/lswa"
@@ -9,7 +9,7 @@
     group: "{{ ansible_user }}"
     recurse: true
 
-- name: checkout | lswa
+- name: installation | checkout lswa/trunk
   environment:
     - LC_ALL: en_US.UTF-8
     - LC_CTYPE: en_US.UTF-8
@@ -19,7 +19,12 @@
     username: "{{ apologic_svn_login }}"
     password: "{{ apologic_svn_password }}"
 
-- name: clone | lswa/launcher
+- name: installation | create database
+  when: lswa_create_db
+  postgresql_db:
+    name: lswa
+
+- name: installation | clone lswa/launcher
   git:
     repo: http://git.phmd.net/lswa/launcher.git
     dest: "{{ workspace_dir }}/apologic/lswa/launcher"
@@ -49,6 +54,12 @@
 
           workon_log "LSWA"  
           pwd
+
+          workon_log "SVN"
+          svn --version --quiet
+
+          workon_log "GIT"
+          git --version
 
           workon_log "JAVA"
           java -version

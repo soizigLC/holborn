@@ -43,6 +43,6 @@
 
     # Apologic projects
     - { role: lswa, when: lswa }
-    - { role: spoutnik, when: spoutnik }
     - { role: costarica, when: costarica }
+    - { role: spoutnik, when: spoutnik }
     - { role: poc-gestion-versions, when: poc_gestion_versions }

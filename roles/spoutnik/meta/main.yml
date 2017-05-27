@@ -1,2 +1,11 @@
 ---
 # Spoutnik project installation and configuration role
+
+dependencies:
+
+  # Role and usage dependencies
+  - { role: git }
+  - { role: postgresql }
+
+  # Usage dependencies
+  - { role: eclipse }

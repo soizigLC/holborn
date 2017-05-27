@@ -3,3 +3,5 @@
 
 dependencies:
   - { role: svn }
+  - { role: git }
+  - { role: postgresql }

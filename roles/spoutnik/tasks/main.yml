@@ -27,6 +27,19 @@
     - synchro-lswa
     - tools
 
+- name: installation | create databases
+  when: spoutnik_create_db
+  postgresql_db:
+    name: "{{ item }}"
+  with_items:
+    - spoutnik_actualite
+    - spoutnik_administration
+    - spoutnik_cas_utilisateur
+    - spoutnik_configuration
+    - spoutnik_livrable
+    - spoutnik_parc_applicatif
+    - spoutnik_synchro_lswa
+
 
 - name: configuration | check .bashrc_workon is present
   stat:

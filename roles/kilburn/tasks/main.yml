@@ -1,6 +1,6 @@
 ---
 
-- name: directory
+- name: installation | directory
   become: true
   file:
     path: "{{ workspace_dir }}/private"
@@ -9,10 +9,17 @@
     group: "{{ ansible_user }}"
     recurse: true
 
-- name: clone
+- name: installation | clone
   git:
     repo: git@gitlab.com:SebastienM4j/kilburn.git
     dest: "{{ workspace_dir }}/private/kilburn"
+
+- name: installation | create databases
+  postgresql_db:
+    name: "{{ item }}"
+  with_items:
+    - kilburn
+    - kilburn_dev
 
 
 - name: configuration | check .bashrc_workon is present

@@ -1,2 +1,5 @@
 ---
 # Archived project's installation and configuration role
+
+dependencies:
+  - { role: git }

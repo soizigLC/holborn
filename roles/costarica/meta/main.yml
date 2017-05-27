@@ -2,4 +2,10 @@
 # Costarica project installation and configuration role
 
 dependencies:
+  
+  # Role and usage dependencies
   - { role: svn }
+  - { role: postgresql }
+
+  # Usage dependencies
+  - { role: eclipse }
