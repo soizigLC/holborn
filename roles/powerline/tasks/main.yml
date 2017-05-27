@@ -3,6 +3,13 @@
 - name: installation | update if needed
   shell: pip install --upgrade pip
 
+# FIXME : ne fonctionne pas, à voir s'il s'agit d'un problème de configuration
+- name: installation | powerline-svnstatus
+  become: true
+  pip:
+    name: powerline-svnstatus
+
+
 - name: configuration | copy configuration's files
   become: true
   copy:
