@@ -7,3 +7,5 @@
 
 - include: installation.yml
   when: gradle_installed.stat.isdir is not defined
+
+- include: configuration.yml
