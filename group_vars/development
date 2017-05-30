@@ -18,8 +18,8 @@ dirs_to_delete:
   - { path: '/home/sebastien/Téléchargements' }
   - { path: '/home/sebastien/Vidéos' }
 
-dirs_to_create:
-  - { path: '/home/sebastien/download', owner: 'sebastien', group: 'sebastien' }
+dirs_symlink:
+  - { path: '/home/sebastien/downloads', src: '/media/sf_downloads', owner: 'sebastien', group: 'sebastien' }
 
 
 # Sublime Text

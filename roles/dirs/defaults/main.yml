@@ -5,3 +5,6 @@ dirs_to_delete: []
 
 dirs_to_create: []
 #  - { path: '/path/to/dir', owner: 'owner', group: 'group' }
+
+dirs_symlink: []
+#  - { path: '/path/to/symlink', src: '/path/to/source', owner: 'owner', group: 'group' }

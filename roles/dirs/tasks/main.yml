@@ -1,13 +1,13 @@
 ---
 
-- name: deletion
+- name: directories deletion
   become: true
   file:
     path: "{{ item.path }}"
     state: absent
   with_items: "{{ dirs_to_delete }}"
 
-- name: creation
+- name: directories creation
   become: true
   file:
     path: "{{ item.path }}"
@@ -16,3 +16,14 @@
     group: "{{ item.group }}"
     recurse: true
   with_items: "{{ dirs_to_create }}"
+
+- name: symlink creation
+  become: true
+  file:
+    path: "{{ item.path }}"
+    state: link
+    src: "{{ item.src }}"
+    force: true
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+  with_items: "{{ dirs_symlink }}"
