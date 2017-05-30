@@ -1,0 +1,5 @@
+---
+
+- name: add vboxsf group to user
+  become: true
+  shell: usermod -a -G vboxsf {{ ansible_user }}
