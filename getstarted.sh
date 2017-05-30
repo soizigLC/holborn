@@ -18,7 +18,7 @@ echo -e "\e[36m* Installation des dépendances (requirements) *"
 echo -e "\e[35m==============================================="
 echo -e "\e[39m"
 
-ansible-galaxy install -r requirements.yml
+sudo ansible-galaxy install -r requirements.yml
 
 echo
 echo -e "\e[36m* Let's playbooks ! *"

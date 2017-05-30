@@ -11,11 +11,13 @@
     update_cache: yes
 
 - name: installation | install
+  become: true
   apt:
     name: tilix
     state: latest
 
 - name: configuration | dconf installation
+  become: true
   apt:
       name: dconf-cli
 

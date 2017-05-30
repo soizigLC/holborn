@@ -38,12 +38,10 @@ Utilisation
     * Cf [page 70, § 4.2.2.1](http://download.virtualbox.org/virtualbox/UserManual_fr_FR.pdf)
     * `sudo apt-get install dkms`
     * Aller dans le répertoire de montage du CD
-    * `sh ./VBoxLinuxAdditions.run`
-
+    * `sudo sh ./VBoxLinuxAdditions.run`
 
 * Créer un clé SSH `ssh-keygen -C "sebastien@email.com"`
 * Copier la clé publique `~/.ssh/id_rsa.pub` dans [GitLab](https://gitlab.com/profile/keys)
-
 
 * Installer Git `sudo apt-get install git`
 * Créer un répertoire pour accueillir le projet `mkdir -p /home/sebastien/workspace/private ; cd /home/sebastien/workspace/private`
