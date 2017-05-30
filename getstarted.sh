@@ -18,7 +18,7 @@ echo -e "\e[36m* Installation des dépendances (requirements) *"
 echo -e "\e[35m==============================================="
 echo -e "\e[39m"
 
-sudo ansible-galaxy install -r requirements.yml
+ansible-galaxy install -r requirements.yml
 
 echo
 echo -e "\e[36m* Let's playbooks ! *"
@@ -26,7 +26,7 @@ echo -e "\e[35m====================="
 echo -e "\e[39m"
 
 echo -e "\e[39m * Installation d'une VM de développement personnelle :"
-echo
+echo -e "\e[39m"
 echo -e "\e[34m       ansible-playbook -i development home.yml --extra-vars \"ansible_become_pass=sebastien\""
-echo
+echo -e "\e[39m"
 

@@ -45,7 +45,9 @@ Utilisation
 * Copier la clé publique `~/.ssh/id_rsa.pub` dans [GitLab](https://gitlab.com/profile/keys)
 
 
-* Cloner ce projet `git clone git@gitlab.com:SebastienM4j/holborn.git`
+* Installer Git `sudo apt-get install git`
+* Créer un répertoire pour accueillir le projet `mkdir -p /home/sebastien/workspace/private ; cd /home/sebastien/workspace/private`
+* Cloner ce projet `git clone git@gitlab.com:SebastienM4j/holborn.git ; cd holborn`
 * Installer [Ansible](https://www.ansible.com/) en suivant [cette procédure](http://docs.ansible.com/ansible/intro_installation.html)
     * Pour Ubuntu, exécuter simplement le script `getstarted.sh`
 
