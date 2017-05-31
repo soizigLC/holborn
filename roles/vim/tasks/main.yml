@@ -6,6 +6,7 @@
     update_cache: yes
 
 - name: installation | install
+  become: true
   apt:
     name: vim
     state: latest

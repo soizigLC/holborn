@@ -22,6 +22,7 @@
   shell: mv /opt/eclipse/eclipse/ /opt/eclipse/{{ eclipse_version }}
 
 - name: installation | create menu
+  become: true
   template:
     src: ../templates/eclipse.desktop.j2
     dest: /usr/share/applications/eclipse-{{ eclipse_version }}.desktop
