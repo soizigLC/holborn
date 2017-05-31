@@ -24,7 +24,7 @@
 - name: installation | create menu
   template:
     src: ../templates/eclipse.desktop.j2
-    dest: "{{ ansible_user_dir }}/.local/share/applications/eclipse-{{ eclipse_version }}.desktop"
+    dest: /usr/share/applications/eclipse-{{ eclipse_version }}.desktop
 
 - name: finalization | delete archive
   file:
