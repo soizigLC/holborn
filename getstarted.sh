@@ -21,6 +21,16 @@ echo -e "\e[39m"
 sudo ansible-galaxy install -r requirements.yml
 
 echo
+echo -e "\e[36m* Changement des droits sur .ansible *"
+echo -e "\e[35m======================================"
+echo -e "\e[39m"
+
+user=$(whoami)
+
+sudo chown -R $user:$user /home/$user/.ansible
+sudo chown -R $user:$user /home/$user/.ansible_galaxy
+
+echo
 echo -e "\e[36m* Let's playbooks ! *"
 echo -e "\e[35m====================="
 echo -e "\e[39m"
