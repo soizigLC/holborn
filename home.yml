@@ -15,6 +15,7 @@
     - { role: tilix }
     - { role: nass600.powerline }
     - { role: powerline }
+    - { role: vim }
     - { role: bash }
 
     # Chrome
