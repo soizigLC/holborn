@@ -2,7 +2,7 @@
 
 - name: installation | install plugins
   shell: |
-    plugin_count = $(cat /opt/eclipse/{{ eclipse_version }}/artifacts.xml | grep "classifier='org.eclipse.update.feature' id='$(echo "{{ item.feature }}" | sed 's/\(.*\)\.feature\.group$/\1/')'" | wc -l)
+    plugin_count=$(cat /opt/eclipse/{{ eclipse_version }}/artifacts.xml | grep "classifier='org.eclipse.update.feature' id='$(echo "{{ item.feature }}" | sed 's/\(.*\)\.feature\.group$/\1/')'" | wc -l)
     if [ $plugin_count -eq 0 ]; then
         /opt/eclipse/{{ eclipse_version }}/eclipse -application org.eclipse.equinox.p2.director -noSplash -repository {{ item.repo }} -installIUs {{ item.feature }}
     fi
