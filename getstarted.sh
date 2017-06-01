@@ -8,10 +8,9 @@ echo -e "\e[36m* Installation d'Ansible (pour Ubuntu) *"
 echo -e "\e[35m========================================"
 echo -e "\e[39m"
 
-sudo apt-get install software-properties-common
-sudo apt-add-repository ppa:ansible/ansible
-sudo apt-get update
-sudo apt-get install ansible
+sudo apt-get install python-pip
+sudo pip install --upgrade pip
+sudo pip install ansible
 
 echo
 echo -e "\e[36m* Installation des dépendances (requirements) *"
