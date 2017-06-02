@@ -1,15 +1,5 @@
 ---
 
-- name: installation | add repository
-  become: true
-  apt_repository:
-    repo: "{{ postgresql_apt_repository }}"
-
-- name: installation | add key
-  become: true
-  apt_key:
-    url: "{{ postgresql_apt_key }}"   
-
 - name: installation | update cache
   become: true
   apt:
