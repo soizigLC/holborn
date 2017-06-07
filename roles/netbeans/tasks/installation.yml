@@ -21,7 +21,18 @@
     mode: 0755
 
 - name: installation | install netbeans
-  shell: "/tmp/netbeans-{{ netbeans_version }}.sh --silent -J-Dnb-base.installation.location=/opt/netbeans/{{ netbeans_version }}"
+  shell: "/tmp/netbeans-{{ netbeans_version }}.sh -J-Dnb-base.installation.location=/opt/netbeans/{{ netbeans_version }}"
+  
+- name: installation | create menu
+  become: true
+  copy:
+    src: "{{ ansible_user_dir }}/Desktop/netbeans-{{ netbeans_version }}.desktop"
+    dest: /usr/share/applications/netbeans-{{ netbeans_version }}.desktop
+    
+- name: finalization | delete desktop directory
+  file:
+    path: "{{ ansible_user_dir }}/Desktop"
+    state: absent
 
 - name: finalization | delete script
   file:

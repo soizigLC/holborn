@@ -8,7 +8,7 @@ tilix_rows: 53
 tilix_cols: 180
 
 bashrc_workon_opts:
-  - { name: 'GRADLE_OPTS', value: '-Xmxm -Dorg.gradle.daemon=true' }
+  - { name: 'GRADLE_OPTS', value: '-Xmx1024m -Dorg.gradle.daemon=true' }
 
 # Projects
 
