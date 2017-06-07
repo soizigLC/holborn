@@ -39,3 +39,8 @@ echo -e "\e[39m"
 echo -e "\e[34m       ansible-playbook -i development home.yml --extra-vars \"ansible_become_pass=sebastien\""
 echo -e "\e[39m"
 
+echo -e "\e[39m * Installation d'une VM de développement pour Apologic :"
+echo -e "\e[39m"
+echo -e "\e[34m       ansible-playbook -i development apologic.yml --extra-vars \"ansible_become_pass=sebastien\""
+echo -e "\e[39m"
+

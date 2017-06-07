@@ -1,0 +1,50 @@
+---
+# Playbook for Apologic development machine
+
+
+- name: Apologic development playbook
+  hosts: apologic
+
+  roles:
+
+    # General
+    - { role: vbox }
+    - { role: dirs }
+
+    # Terminal
+    - { role: tilix }
+    - { role: nass600.powerline }
+    - { role: powerline }
+    - { role: vim }
+    - { role: bash }
+
+    # Chrome
+    - { role: cmprescott.chrome, become: true }
+
+    # Sublime Text
+    - { role: vaulttec.sublimetext }
+    - { role: theNewFlesh.sublime-config }
+
+    # SCM
+    - { role: git }
+    - { role: kdiff3 }
+
+    # Database
+    - { role: postgresql }
+    - { role: pgadmin4 }
+
+    # Java
+    - { role: openjdk }
+    - { role: gradle }
+    - { role: eclipse }
+
+    # Private projects
+    - { role: holborn }
+    - { role: kilburn, when: kilburn }
+    - { role: archived-projects, when: archived_projects }
+
+    # Apologic projects
+    - { role: lswa, when: lswa }
+    - { role: costarica, when: costarica }
+    - { role: spoutnik, when: spoutnik }
+    - { role: poc-gestion-versions, when: poc_gestion_versions }

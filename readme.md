@@ -52,3 +52,8 @@ Utilisation
 #### Configuration d'une machine de développement personnelle
 
 `ansible-playbook -i development home.yml --extra-vars "ansible_become_pass=sebastien"`
+
+#### Configuration d'une machine de développement pour Apologic
+
+`ansible-playbook -i development apologic.yml --extra-vars "ansible_become_pass=sebastien"`
+

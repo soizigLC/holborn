@@ -1,0 +1,27 @@
+---
+# Variables for Apologic development machine
+
+
+# Terminal
+
+tilix_rows: 53
+tilix_cols: 180
+
+bashrc_workon_opts:
+  - { name: 'GRADLE_OPTS', value: '-Xmxm -Dorg.gradle.daemon=true' }
+
+# Projects
+
+kilburn: false
+archived_projects: false
+
+lswa: false
+lswa_create_db: false
+
+costarica: false
+costarica_create_db: false
+
+spoutnik: false
+spoutnik_create_db: false
+
+poc_gestion_versions: false
