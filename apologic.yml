@@ -37,6 +37,7 @@
     - { role: openjdk }
     - { role: gradle }
     - { role: eclipse }
+    - { role: netbeans }
 
     # Private projects
     - { role: holborn }
