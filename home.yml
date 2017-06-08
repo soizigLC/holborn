@@ -2,36 +2,12 @@
 # Playbook for home development machine
 
 
+- include: development.yml
+
 - name: Home development playbook
   hosts: home
 
   roles:
-
-    # General
-    - { role: vbox }
-    - { role: dirs }
-
-    # Terminal
-    - { role: tilix }
-    - { role: nass600.powerline }
-    - { role: powerline }
-    - { role: vim }
-    - { role: bash }
-
-    # Chrome
-    - { role: cmprescott.chrome, become: true }
-
-    # Sublime Text
-    - { role: vaulttec.sublimetext }
-    - { role: theNewFlesh.sublime-config }
-
-    # SCM
-    - { role: git }
-    - { role: kdiff3 }
-
-    # Database
-    - { role: postgresql }
-    - { role: pgadmin4 }
 
     # Java
     - { role: openjdk }
