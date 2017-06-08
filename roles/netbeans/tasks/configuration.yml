@@ -1,0 +1,7 @@
+---
+
+- name: configuration | memory
+  replace:
+    path: /opt/netbeans/{{ netbeans_version }}/etc/netbeans.conf
+    regexp: '-J-Xms32m'
+    replace: "{{ netbeans_memory }}"

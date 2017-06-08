@@ -1,3 +1,4 @@
 ---
 
 netbeans_version: 8.1
+netbeans_memory: -J-Xms128m -J-Xmx1024m -J-XX:MaxPermSize=256m
