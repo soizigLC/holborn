@@ -34,7 +34,7 @@
     - { role: pgadmin4 }
 
     # Java
-    - { role: openjdk }
+    - { role: oraclejdk }
     - { role: gradle }
     - { role: eclipse }
     - { role: netbeans }
@@ -45,7 +45,7 @@
     - { role: archived-projects, when: archived_projects }
 
     # Apologic projects
-    - { role: lswa, when: lswa }
-    - { role: costarica, when: costarica }
-    - { role: spoutnik, when: spoutnik }
+    - { role: lswa }
+    - { role: costarica }
+    - { role: spoutnik }
     - { role: poc-gestion-versions, when: poc_gestion_versions }

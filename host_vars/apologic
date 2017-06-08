@@ -16,13 +16,9 @@ bashrc_workon_opts:
 kilburn: false
 archived_projects: false
 
-lswa: false
-lswa_create_db: false
-
-costarica: false
-costarica_create_db: false
-
-spoutnik: false
-spoutnik_create_db: false
+lswa_repo:
+  - { name: trunk, branch: trunk }
+  - { name: branch, branch: branches/v1/v1.43/v1.43.0 }
+  - { name: patch, branch: branches/v1/v1.42/v1.42.x }
 
 poc_gestion_versions: false
