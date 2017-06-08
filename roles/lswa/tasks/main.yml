@@ -53,10 +53,11 @@
       apoweb|lswa)
           cd "{{ workspace_dir }}/apologic/lswa"
 
-          # TODO install JDK 7 and ANT
+          # TODO install JDK 7
           export JAVA_HOME="$ORIGINAL_JAVA_HOME"
           export GRADLE_HOME="$ORIGINAL_GRADLE_HOME"
-          export PATH="$ORIGINAL_PATH"
+          export ANT_HOME="/opt/netbeans/{{ netbeans_version }}/extide/ant"
+          export PATH="$ANT_HOME/bin:$ORIGINAL_PATH"
 
           workon_log_title
 
@@ -73,6 +74,9 @@
           java -version
 
           workon_log "GRADLE" "$(gradle -version)"
+
+          workon_log "ANT"
+          ant -version
 
           workon_log_end
           ;;
