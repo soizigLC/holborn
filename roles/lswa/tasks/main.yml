@@ -9,20 +9,28 @@
     group: "{{ ansible_user }}"
     recurse: true
 
-- name: installation | checkout lswa/trunk
+- name: installation | checkout lswa
   environment:
     - LC_ALL: en_US.UTF-8
     - LC_CTYPE: en_US.UTF-8
   subversion:
-    repo: http://81.255.60.234/usvn/svn/lab4/trunk
-    dest: "{{ workspace_dir }}/apologic/lswa/lswa"
+    repo: http://81.255.60.234/usvn/svn/lab4/{{ item.branch }}
+    dest: "{{ workspace_dir }}/apologic/lswa/{{ item.name }}"
     username: "{{ apologic_svn_login }}"
     password: "{{ apologic_svn_password }}"
+  with_items: "{{ lswa_repo }}"
 
 - name: installation | create database
   when: lswa_create_db
   postgresql_db:
-    name: lswa
+    name: lswa_{{ item.name }}
+  with_items: "{{ lswa_repo }}"
+
+- name: installation | create database tu
+  when: lswa_create_db
+  postgresql_db:
+    name: lswa_{{ item.name }}_tu
+  with_items: "{{ lswa_repo }}"
 
 - name: installation | clone lswa/launcher
   git:

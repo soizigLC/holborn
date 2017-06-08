@@ -3,7 +3,7 @@
 - name: installation | directory
   become: true
   file:
-    path: "{{ workspace_dir }}/apologic"
+    path: "{{ workspace_dir }}/apologic/costarica"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -14,15 +14,17 @@
     - LC_ALL: en_US.UTF-8
     - LC_CTYPE: en_US.UTF-8
   subversion:
-    repo: http://81.255.60.234/usvn/svn/costarica/trunk
-    dest: "{{ workspace_dir }}/apologic/costarica"
+    repo: http://81.255.60.234/usvn/svn/costarica/{{ item.branch }}
+    dest: "{{ workspace_dir }}/apologic/costarica/{{ item.name }}"
     username: "{{ apologic_svn_login }}"
     password: "{{ apologic_svn_password }}"
+  with_items: "{{ costarica_repo }}"
 
 - name: installation | create database
   when: costarica_create_db
   postgresql_db:
-    name: costarica
+    name: costarica_{{ item.name }}
+  with_items: "{{ costarica_repo }}"
 
 
 - name: configuration | check .bashrc_workon is present
