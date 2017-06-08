@@ -1,3 +1,5 @@
 ---
 
 openjdk_version: 8
+
+openjdk_default: false

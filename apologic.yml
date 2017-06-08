@@ -34,8 +34,8 @@
     - { role: pgadmin4 }
 
     # Java
-    - { role: openjdk }
-    - { role: gradle }
+    - { role: openjdk, openjdk_default: true }
+    - { role: gradle, gradle_default: true }
     - { role: eclipse }
     - { role: netbeans }
 
