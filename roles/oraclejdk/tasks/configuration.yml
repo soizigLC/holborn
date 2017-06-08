@@ -6,9 +6,7 @@
   register: bashrc_workon
 
 - name: configuration | generate env vars in .bashrc_workon
-  when:
-    - bashrc_workon.stat.exists
-    - oraclejdk_default
+  when: bashrc_workon.stat.exists
   blockinfile:
     dest: "{{ ansible_user_dir }}/.bashrc_workon"
     insertafter: "# @PATHOME"
