@@ -1,0 +1,29 @@
+---
+
+- name: installation | download archive
+  get_url:
+    url: "{{ oraclejdk_url }}"
+    dest: /tmp/oraclejdk-{{ oraclejdk_version }}.tar.gz
+    headers: "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"
+
+- name: installation | create parent directory
+  become: true
+  file:
+    path: /opt/jdk
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: installation | unarchive
+  become: true
+  unarchive:
+    src: /tmp/oraclejdk-{{ oraclejdk_version }}.tar.gz
+    dest: /opt/jdk
+
+- name: installation | install in place
+  shell: mv /opt/jdk/jdk{{ oraclejdk_version }}/ /opt/jdk/{{ oraclejdk_version }}
+
+- name: finalization | delete archive
+  file:
+    path: /tmp/oraclejdk-{{ oraclejdk_version }}.tar.gz
+    state: absent

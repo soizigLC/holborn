@@ -1,26 +1,27 @@
 ---
-# Playbook for home development machine
+# Playbook for Apologic development machine
 
 
 - include: development.yml
 
-- name: Home development playbook
-  hosts: home
+- name: Apologic development playbook
+  hosts: apologic
 
   roles:
 
     # Java
-    - { role: openjdk }
+    - { role: oraclejdk }
     - { role: gradle }
     - { role: eclipse }
+    - { role: netbeans }
 
     # Private projects
     - { role: holborn }
-    - { role: kilburn }
+    - { role: kilburn, when: kilburn }
     - { role: archived-projects, when: archived_projects }
 
     # Apologic projects
-    - { role: lswa, when: lswa }
-    - { role: costarica, when: costarica }
-    - { role: spoutnik, when: spoutnik }
+    - { role: lswa }
+    - { role: costarica }
+    - { role: spoutnik }
     - { role: poc-gestion-versions, when: poc_gestion_versions }

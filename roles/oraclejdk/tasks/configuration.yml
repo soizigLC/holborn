@@ -1,0 +1,17 @@
+---
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate env vars in .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @PATHOME"
+    marker: "# {mark} ANSIBLE ORACLE JDK WORKON"
+    block: |
+      export JAVA_HOME="/opt/jdk/{{ oraclejdk_version }}"
+      export ORIGINAL_JAVA_HOME="$JAVA_HOME"
+      export PATH="$JAVA_HOME/bin:$PATH"

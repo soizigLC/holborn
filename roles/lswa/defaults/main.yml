@@ -1,3 +1,6 @@
 ---
 
+lswa_repo:
+  - { name: trunk, branch: trunk }
+
 lswa_create_db: true

@@ -26,3 +26,10 @@
     insertafter: "# @OPTS"
     line: export {{ item.name }}="{{ item.value }}"
   with_items: "{{ bashrc_workon_opts }}"
+
+
+- name: configuration | copy .bashrc_apologic
+  copy:
+    src: ../files/bashrc_apologic
+    dest: "{{ ansible_user_dir }}/.bashrc_apologic"
+  when: ansible_host == 'apologic'

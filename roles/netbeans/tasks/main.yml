@@ -1,0 +1,11 @@
+---
+
+- name: preparation | check if already installed
+  stat:
+    path: /opt/netbeans/{{ netbeans_version }}
+  register: netbeans_installed
+
+- include: installation.yml
+  when: netbeans_installed.stat.isdir is not defined
+
+- include: configuration.yml

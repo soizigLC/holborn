@@ -2,6 +2,12 @@
 # LSWA project installation and configuration role
 
 dependencies:
+
+  # Role and usage dependencies
   - { role: svn }
   - { role: git }
   - { role: postgresql }
+
+  # Usage dependencies
+  - role: netbeans
+    netbeans_version: 8.1

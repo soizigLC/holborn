@@ -1,0 +1,87 @@
+
+# =========================================================
+#   Proxy
+# =========================================================
+
+proxy()
+{
+    export http_proxy=http://10.40.13.254:3128
+}
+
+noproxy()
+{
+    export http_proxy=
+}
+
+
+# =========================================================
+#       Alias serveurs
+# =========================================================
+
+# cri préprod
+
+alias cri-pp1='ssh root@192.168.1.113'
+alias 113='cri-pp1'
+alias cri-pp1-glassfish='ssh glassfish@192.168.1.113'
+alias 113g='cri-pp1-glassfish'
+
+alias cri-pp2='ssh root@192.168.1.114'
+alias 114='cri-pp2'
+
+# cri prod
+
+alias bastion='ssh log_cri@90.83.107.14'
+alias 14='bastion'
+
+# lswa préprod
+
+alias 163='lswa-pp2'
+alias lswa-pp2-glassfish='ssh glassfish@192.168.1.163'
+alias 163g='lswa-pp2-glassfish'
+
+alias lswa-pp3='ssh root@192.168.1.164'
+alias 164='lswa-pp3'
+
+alias lswa-pp4='ssh root@192.168.1.165'
+alias 165='lswa-pp4'
+alias lswa-pp4-glassfish='ssh glassfish@192.168.1.165'
+alias 165g='lswa-pp4-glassfish'
+
+alias lswa-pp5='ssh root@192.168.1.166'
+alias 166='lswa-pp5'
+alias lswa-pp5-glassfish='ssh glassfish@192.168.1.166'
+alias 166g='lswa-pp5-glassfish'
+
+alias lswa-pp6='ssh glassfish@192.168.1.167'
+alias 167='lswa-pp6'
+alias lswa-pp6-postgres='ssh postgres@192.168.1.167'
+alias 167p='lswa-pp6-postgres'
+
+alias lswa-pp8='ssh tomcat8@192.168.1.169'
+alias 169='lswa-pp8'
+alias lswa-pp8-postgres='ssh postgres@192.168.1.169'
+alias 169p='lswa-pp8-postgres'
+
+alias testmig='ssh root@192.168.1.183'
+alias 183='testmig'
+
+# bt v2 préprod
+
+alias btv2-pp='ssh tomcat8@192.168.1.184'
+alias 184='btv2-pp'
+alias btv2-pp-postgres='ssh postgres@192.168.1.184'
+alias 184p='btv2-pp-postgres'
+
+# jenkins
+
+alias jenkins='ssh root@192.168.1.235'
+alias 235='jenkins'
+
+alias jenkins2='ssh sebastien@192.168.1.190'
+alias 190='jenkins2'
+alias jenkins2-postgres='ssh postgres@192.168.1.190'
+alias 190p='jenkins2-postgres'
+
+# sigma
+
+alias sigma='ssh APO_smouquet@172.31.249.167'
