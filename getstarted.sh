@@ -36,11 +36,11 @@ echo -e "\e[39m"
 
 echo -e "\e[39m * Installation d'une VM de développement personnelle :"
 echo -e "\e[39m"
-echo -e "\e[34m       ansible-playbook -i development home.yml --ask-become-pass --limit home"
+echo -e "\e[34m       ansible-playbook -i development home.yml --limit home --ask-become-pass --ask-vault-pass"
 echo -e "\e[39m"
 
 echo -e "\e[39m * Installation d'une VM de développement pour Apologic :"
 echo -e "\e[39m"
-echo -e "\e[34m       ansible-playbook -i development apologic.yml --ask-become-pass --extra-vars "apologic_svn_login=sebastien apologic_svn_password=******" --limit apologic"
+echo -e "\e[34m       ansible-playbook -i development apologic.yml --limit apologic --ask-become-pass --ask-vault-pass"
 echo -e "\e[39m"
 
