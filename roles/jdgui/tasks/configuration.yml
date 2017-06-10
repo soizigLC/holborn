@@ -1,0 +1,18 @@
+---
+
+- name: configuration | check .bashrc_common is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_common"
+  register: bashrc_common
+
+- name: configuration | generate function in .bashrc_common
+  when: bashrc_common.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_common"
+    insertafter: "# @FUNCTIONS"
+    marker: "# {mark} ANSIBLE JD-GUI WORKON"
+    block: |
+      jd()
+      {
+          java -jar /opt/jdgui/jd-gui-{{ jdgui_version }}.jar
+      }

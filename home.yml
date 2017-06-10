@@ -11,8 +11,6 @@
 
     # Java
     - { role: openjdk }
-    - { role: gradle }
-    - { role: eclipse }
 
     # Private projects
     - { role: holborn }

@@ -11,8 +11,6 @@
 
     # Java
     - { role: oraclejdk }
-    - { role: gradle }
-    - { role: eclipse }
     - { role: netbeans }
 
     # Private projects

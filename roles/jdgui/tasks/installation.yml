@@ -1,0 +1,14 @@
+---
+
+- name: installation | create parent directory
+  become: true
+  file:
+    path: /opt/jdgui
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: installation | download
+  get_url:
+    url: https://github.com/java-decompiler/jd-gui/releases/download/v{{ jdgui_version }}/jd-gui-{{ jdgui_version }}.jar
+    dest: /opt/jdgui/jd-gui-{{ jdgui_version }}.jar

@@ -32,3 +32,8 @@
     # Database
     - { role: postgresql }
     - { role: pgadmin4 }
+
+    # Java
+    - { role: gradle }
+    - { role: eclipse }
+    - { role: jdgui }
