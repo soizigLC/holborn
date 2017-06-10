@@ -9,6 +9,7 @@ echo -e "\e[35m========================================"
 echo -e "\e[39m"
 
 sudo apt-get install python-pip
+sudo apt-get install python-cffi
 sudo pip install --upgrade pip
 sudo pip install ansible
 
