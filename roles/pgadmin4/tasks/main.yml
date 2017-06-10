@@ -20,11 +20,11 @@
   pip:
     name: "{{ pgadmin4_pip_download }}"
 
-- name: configuration | create local config
+- name: installation | create local config
   become: true
   shell: cd {{ pgadmin4_python_dist_dir }}/pgadmin4 && cp config.py config_local.py
 
-- name: configuration | set desktop mode
+- name: installation | set desktop mode
   become: true
   lineinfile:
     dest: "{{ pgadmin4_python_dist_dir }}/pgadmin4/config_local.py"
@@ -37,6 +37,15 @@
     dest: /etc/init.d/pgadmin4
     mode: 0755
 
-- name: start pgadmin4
-  become: true
-  shell: /etc/init.d/pgadmin4 restart
+
+- name: configuration | check .bashrc_common is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_common"
+  register: bashrc_common
+
+- name: configuration | generate alias in .bashrc_common
+  when: bashrc_common.stat.exists
+  lineinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_common"
+    insertafter: "# @ALIASES"
+    line: alias pgadmin='/etc/init.d/pgadmin4 start'
