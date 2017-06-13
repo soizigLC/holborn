@@ -8,4 +8,8 @@ dependencies:
   - { role: postgresql }
 
   # Usage dependencies
+  
   - { role: eclipse }
+
+  - role: tomcat
+    tomcat_version: 8.0.44
