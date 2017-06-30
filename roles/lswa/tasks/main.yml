@@ -9,6 +9,7 @@
     group: "{{ ansible_user }}"
     recurse: true
 
+
 - name: installation | checkout lswa
   environment:
     - LC_ALL: en_US.UTF-8
@@ -31,6 +32,28 @@
   postgresql_db:
     name: lswa_{{ item.name }}_tu
   with_items: "{{ lswa_repo }}"
+
+- name: installation | ws context.xml directory
+  file:
+    path: "{{ workspace_dir }}/apologic/lswa/{{ item.name }}/ws/server/global/web/META-INF"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: true
+  with_items: "{{ lswa_repo }}"
+
+- name: configuration | generate ws context.xml
+  template:
+    src: ../templates/context.xml.j2
+    dest: "{{ workspace_dir }}/apologic/lswa/{{ item.name }}/ws/server/global/web/META-INF/context.xml"
+  with_items: "{{ lswa_repo }}"
+
+- name: configuration | generate hibernate.properties
+  template:
+    src: ../templates/hibernate.properties.j2
+    dest: "{{ workspace_dir }}/apologic/lswa/{{ item.name }}/server/persistance/conf/hibernate.properties"
+  with_items: "{{ lswa_repo }}"
+
 
 - name: installation | clone lswa/launcher
   git:

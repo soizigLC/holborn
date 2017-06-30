@@ -1,0 +1,27 @@
+---
+
+- name: installation | download archive
+  get_url:
+    url: http://mirrors.standaloneinstaller.com/apache/tomcat/tomcat-8/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
+    dest: /tmp/tomcat.tar.gz
+
+- name: installation | create parent directory
+  become: true
+  file:
+    path: /opt/tomcat
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: installation | unarchive
+  unarchive:
+    src: /tmp/tomcat.tar.gz
+    dest: /opt/tomcat
+
+- name: installation | install in place
+  shell: mv /opt/tomcat/apache-tomcat-{{ tomcat_version }}/ /opt/tomcat/{{ tomcat_version }}
+
+- name: finalization | delete archive
+  file:
+    path: /tmp/tomcat.tar.gz
+    state: absent

@@ -9,5 +9,9 @@ dependencies:
   - { role: postgresql }
 
   # Usage dependencies
+  
   - role: netbeans
     netbeans_version: 8.1
+
+  - role: tomcat
+    tomcat_version: 8.0.44
