@@ -1,0 +1,51 @@
+---
+
+- name: installation | directory
+  become: true
+  file:
+    path: "{{ workspace_dir }}/private"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: true
+
+- name: installation | clone
+  git:
+    repo: git@github.com:SebastienM4j/west-acton.git
+    dest: "{{ workspace_dir }}/private/west-acton"
+
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate west-acton .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @WORKON_CASE"
+    marker: "# {mark} ANSIBLE WEST ACTON WORKON"
+    block: |
+      west-acton|wac)
+          cd "{{ workspace_dir }}/private/west-acton"
+
+          export JAVA_HOME="$ORIGINAL_JAVA_HOME"
+          export GRADLE_HOME="$ORIGINAL_GRADLE_HOME"
+          export PATH="$ORIGINAL_PATH"
+
+          workon_log_title
+
+          workon_log "West Acton"  
+          pwd
+
+          workon_log "GIT"
+          git --version
+
+          workon_log "JAVA"
+          java -version
+
+          workon_log "GRADLE" "$(gradle -version)"
+
+          workon_log_end
+          ;;

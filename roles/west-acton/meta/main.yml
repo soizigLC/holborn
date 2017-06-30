@@ -1,0 +1,10 @@
+---
+# West Acton project installation and configuration role
+
+dependencies:
+
+  # Role and usage dependencies
+  - { role: git }
+
+  # Usage dependencies
+  - { role: eclipse }
