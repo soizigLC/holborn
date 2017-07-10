@@ -21,7 +21,7 @@ archived_projects: false
 
 lswa_repo:
   - { name: trunk, branch: trunk }
-  - { name: branch, branch: branches/v1/v1.43/v1.43.0 }
-  - { name: patch, branch: branches/v1/v1.42/v1.42.x }
+  - { name: branch, branch: branches/v1/v1.44/v1.44.x }
+  - { name: patch, branch: branches/v1/v1.44/v1.44.0 }
 
 poc_gestion_versions: false
