@@ -12,4 +12,4 @@ dependencies:
   - { role: eclipse }
 
   - role: tomcat
-    tomcat_version: 8.0.44
+    tomcat_version: 8.0.45
