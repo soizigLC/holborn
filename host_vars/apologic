@@ -7,6 +7,8 @@
 tilix_rows: 53
 tilix_cols: 180
 
+powerline_fonts_repo: https://github.com/powerline/fonts.git
+
 bashrc_workon_opts:
   - { name: 'GRADLE_OPTS', value: '-Xmx1024m -Dorg.gradle.daemon=true' }
   - { name: 'ANT_OPTS', value: '-Xmx1024m' }
