@@ -36,4 +36,5 @@
     # Java
     - { role: gradle }
     - { role: eclipse }
+    - { role: intellij }
     - { role: jdgui }

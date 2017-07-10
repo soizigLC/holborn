@@ -1,0 +1,37 @@
+---
+
+- name: installation | download archive
+  get_url:
+    url: "{{ intellij_url }}"
+    dest: /tmp/intellij.tar.gz
+
+- name: installation | create parent directory
+  become: true
+  file:
+    path: /opt/intellij
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: installation | unarchive
+  unarchive:
+    src: /tmp/intellij.tar.gz
+    dest: /opt/intellij
+
+- name: installation | install in place
+  shell: mv /opt/intellij/idea-IC-{{ intellij_build }} /opt/intellij/{{ intellij_version }}
+
+- name: configuration | inofy watch conf
+  become: true
+  template:
+    src: ../templates/idea.conf.j2
+    dest: /etc/sysctl.d/idea.conf
+
+- name: configuration | inofy watch reload
+  become: true
+  shell: sysctl -p --system
+
+- name: finalization | delete archive
+  file:
+    path: /tmp/intellij.tar.gz
+    state: absent
