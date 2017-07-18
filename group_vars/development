@@ -29,7 +29,6 @@ sublimetext_build: 3126
 sublime_include_packages: true
 sublime_packages:
   - "Package Control"
-  - "Markdown Light"
   - "Markdown HTML Preview"
   - "Markdown Preview"
 

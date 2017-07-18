@@ -4,3 +4,7 @@ lswa_repo:
   - { name: trunk, branch: trunk }
 
 lswa_create_db: true
+
+
+oraclejdk_version: 1.7.0_80
+netbeans_version: 8.1
