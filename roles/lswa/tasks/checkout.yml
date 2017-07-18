@@ -1,0 +1,39 @@
+---
+
+- name: installation | checkout lswa
+  environment:
+    - LC_ALL: en_US.UTF-8
+    - LC_CTYPE: en_US.UTF-8
+  subversion:
+    repo: http://81.255.60.234/usvn/svn/lab4/{{ branch_item.item.branch }}
+    dest: "{{ workspace_dir }}/apologic/lswa/{{ branch_item.item.name }}"
+    username: "{{ apologic_svn_login }}"
+    password: "{{ apologic_svn_password }}"
+
+- name: installation | create database
+  when: lswa_create_db
+  postgresql_db:
+    name: lswa_{{ branch_item.item.name }}
+
+- name: installation | create database tu
+  when: lswa_create_db
+  postgresql_db:
+    name: lswa_{{ branch_item.item.name }}_tu
+
+- name: installation | ws context.xml directory
+  file:
+    path: "{{ workspace_dir }}/apologic/lswa/{{ branch_item.item.name }}/ws/server/global/web/META-INF"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: true
+
+- name: configuration | generate ws context.xml
+  template:
+    src: ../templates/context.xml.j2
+    dest: "{{ workspace_dir }}/apologic/lswa/{{ branch_item.item.name }}/ws/server/global/web/META-INF/context.xml"
+
+- name: configuration | generate hibernate.properties
+  template:
+    src: ../templates/hibernate.properties.j2
+    dest: "{{ workspace_dir }}/apologic/lswa/{{ branch_item.item.name }}/server/persistance/conf/hibernate.properties"

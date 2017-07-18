@@ -10,49 +10,17 @@
     recurse: true
 
 
-- name: installation | checkout lswa
-  environment:
-    - LC_ALL: en_US.UTF-8
-    - LC_CTYPE: en_US.UTF-8
-  subversion:
-    repo: http://81.255.60.234/usvn/svn/lab4/{{ item.branch }}
-    dest: "{{ workspace_dir }}/apologic/lswa/{{ item.name }}"
-    username: "{{ apologic_svn_login }}"
-    password: "{{ apologic_svn_password }}"
+- name: installation | check if branch already installed
+  stat:
+    path: "{{ workspace_dir }}/apologic/lswa/{{ item.name }}"
   with_items: "{{ lswa_repo }}"
+  register: branch_installed
 
-- name: installation | create database
-  when: lswa_create_db
-  postgresql_db:
-    name: lswa_{{ item.name }}
-  with_items: "{{ lswa_repo }}"
-
-- name: installation | create database tu
-  when: lswa_create_db
-  postgresql_db:
-    name: lswa_{{ item.name }}_tu
-  with_items: "{{ lswa_repo }}"
-
-- name: installation | ws context.xml directory
-  file:
-    path: "{{ workspace_dir }}/apologic/lswa/{{ item.name }}/ws/server/global/web/META-INF"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    recurse: true
-  with_items: "{{ lswa_repo }}"
-
-- name: configuration | generate ws context.xml
-  template:
-    src: ../templates/context.xml.j2
-    dest: "{{ workspace_dir }}/apologic/lswa/{{ item.name }}/ws/server/global/web/META-INF/context.xml"
-  with_items: "{{ lswa_repo }}"
-
-- name: configuration | generate hibernate.properties
-  template:
-    src: ../templates/hibernate.properties.j2
-    dest: "{{ workspace_dir }}/apologic/lswa/{{ item.name }}/server/persistance/conf/hibernate.properties"
-  with_items: "{{ lswa_repo }}"
+- include: checkout.yml
+  with_items: "{{ branch_installed.results }}"
+  loop_control:
+    loop_var: branch_item
+  when: branch_item.stat.exists == false
 
 
 - name: installation | clone lswa/launcher
