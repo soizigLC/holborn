@@ -10,6 +10,8 @@ dependencies:
 
   # Usage dependencies
 
+  - role: smartsvn
+
   - role: oraclejdk
     oraclejdk_version: 1.7.0_80
     oraclejdk_url: http://jdk.phmd.net/jdk-7u80-linux-x64.tar.gz

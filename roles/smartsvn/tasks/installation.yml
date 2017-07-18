@@ -1,0 +1,33 @@
+---
+
+- name: installation | download archive
+  get_url:
+    url: "{{ smartsvn_url }}"
+    dest: /tmp/smartsvn.tar.gz
+
+- name: installation | create parent directory
+  become: true
+  file:
+    path: /opt/smartsvn
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: installation | unarchive
+  unarchive:
+    src: /tmp/smartsvn.tar.gz
+    dest: /opt/smartsvn
+
+- name: installation | install in place
+  shell: mv /opt/smartsvn/smartsvn/ /opt/smartsvn/{{ smartsvn_version }}
+
+- name: installation | create menu
+  become: true
+  template:
+    src: ../templates/smartsvn.desktop.j2
+    dest: /usr/share/applications/smartsvn-{{ smartsvn_version }}.desktop
+
+- name: finalization | delete archive
+  file:
+    path: /tmp/smartsvn.tar.gz
+    state: absent
