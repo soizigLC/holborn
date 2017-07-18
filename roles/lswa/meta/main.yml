@@ -9,6 +9,11 @@ dependencies:
   - { role: postgresql }
 
   # Usage dependencies
+
+  - role: oraclejdk
+    oraclejdk_version: 1.7.0_80
+    oraclejdk_url: http://jdk.phmd.net/jdk-7u80-linux-x64.tar.gz
+    oraclejdk_config_workon: false
   
   - role: netbeans
     netbeans_version: 8.1
