@@ -22,16 +22,20 @@
 
 - name: installation | install netbeans
   shell: "/tmp/netbeans-{{ netbeans_version }}.sh -J-Dnb-base.installation.location=/opt/netbeans/{{ netbeans_version }}"
+
+- name: installation | detect desktop path
+  shell: echo "$(xdg-user-dir DESKTOP)"
+  register: desktop_path
   
 - name: installation | create menu
   become: true
   copy:
-    src: "{{ ansible_user_dir }}/Desktop/netbeans-{{ netbeans_version }}.desktop"
+    src: "{{ desktop_path.stdout }}/netbeans-{{ netbeans_version }}.desktop"
     dest: /usr/share/applications/netbeans-{{ netbeans_version }}.desktop
     
-- name: finalization | delete desktop directory
+- name: finalization | delete desktop file
   file:
-    path: "{{ ansible_user_dir }}/Desktop"
+    path: "{{ desktop_path.stdout }}/netbeans-{{ netbeans_version }}.desktop"
     state: absent
 
 - name: finalization | delete script
