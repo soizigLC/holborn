@@ -9,3 +9,4 @@ dependencies:
 
   # Usage dependencies
   - { role: eclipse }
+  - { role: nodejs }

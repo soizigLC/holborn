@@ -1,0 +1,9 @@
+---
+
+- name: preparation | check if already installed
+  stat:
+    path: /opt/nodejs/{{ nodejs_version }}
+  register: nodejs_installed
+
+- include: installation.yml
+  when: nodejs_installed.stat.isdir is not defined

@@ -1,0 +1,44 @@
+---
+
+- name: installation | download archive
+  get_url:
+    url: https://nodejs.org/dist/v{{ nodejs_version }}/node-v{{ nodejs_version }}-linux-x64.tar.xz
+    dest: /tmp/nodejs-{{ nodejs_version }}.tar.gz
+
+- name: installation | create parent directory
+  become: true
+  file:
+    path: /opt/nodejs
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: installation | unarchive
+  become: true
+  unarchive:
+    src: /tmp/nodejs-{{ nodejs_version }}.tar.gz
+    dest: /opt/nodejs
+
+- name: installation | install in place
+  shell: mv /opt/nodejs/node-v{{ nodejs_version }}-linux-x64/ /opt/nodejs/{{ nodejs_version }}
+
+- name: finalization | delete archive
+  file:
+    path: /tmp/nodejs-{{ nodejs_version }}.tar.gz
+    state: absent
+
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate env vars in .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @PATHOME"
+    marker: "# {mark} ANSIBLE NODEJS WORKON"
+    block: |
+      export NODEJS_HOME="/opt/nodejs/{{ nodejs_version }}"
+      export PATH="$NODEJS_HOME/bin:$PATH"
