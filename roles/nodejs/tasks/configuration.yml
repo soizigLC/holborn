@@ -1,0 +1,16 @@
+---
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate env vars in .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @PATHOME"
+    marker: "# {mark} ANSIBLE NODEJS WORKON"
+    block: |
+      export NODEJS_HOME="/opt/nodejs/{{ nodejs_version }}"
+      export PATH="$NODEJS_HOME/bin:$PATH"

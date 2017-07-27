@@ -7,3 +7,5 @@
 
 - include: installation.yml
   when: nodejs_installed.stat.isdir is not defined
+
+- include: configuration.yml
