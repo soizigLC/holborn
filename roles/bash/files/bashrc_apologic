@@ -79,6 +79,8 @@ alias 235='jenkins'
 
 alias jenkins2='ssh sebastien@192.168.1.190'
 alias 190='jenkins2'
+alias jenkins2-tomcat8='ssh tomcat8@192.168.1.190'
+alias 190t='jenkins2-tomcat8'
 alias jenkins2-postgres='ssh postgres@192.168.1.190'
 alias 190p='jenkins2-postgres'
 
