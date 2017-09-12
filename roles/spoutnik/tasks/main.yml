@@ -18,7 +18,7 @@
     - actualite
     - administration
     - cas
-    - cas-utilisateur
+    - cas-compte
     - configuration
     - docs
     - livrable
@@ -34,7 +34,7 @@
   with_items:
     - spoutnik_actualite
     - spoutnik_administration
-    - spoutnik_cas_utilisateur
+    - spoutnik_cas_compte
     - spoutnik_configuration
     - spoutnik_livrable
     - spoutnik_parc_applicatif
