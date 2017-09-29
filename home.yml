@@ -2,7 +2,7 @@
 # Playbook for home development machine
 
 
-- include: development.yml
+- import_playbook: development.yml
 
 - name: Home development playbook
   hosts: home

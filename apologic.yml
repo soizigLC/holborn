@@ -2,7 +2,7 @@
 # Playbook for Apologic development machine
 
 
-- include: development.yml
+- import_playbook: development.yml
 
 - name: Apologic development playbook
   hosts: apologic
