@@ -19,6 +19,7 @@
     username: "{{ apologic_svn_login }}"
     password: "{{ apologic_svn_password }}"
   with_items: "{{ costarica_repo }}"
+  ignore_errors: true
 
 - name: installation | create database
   when: costarica_create_db

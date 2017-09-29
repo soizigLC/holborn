@@ -9,6 +9,7 @@
     dest: "{{ workspace_dir }}/apologic/lswa/{{ branch_item.item.name }}"
     username: "{{ apologic_svn_login }}"
     password: "{{ apologic_svn_password }}"
+  ignore_errors: true
 
 - name: installation | create database
   when: lswa_create_db
