@@ -9,7 +9,7 @@ dependencies:
 
   # Usage dependencies
   
-  - { role: eclipse }
+  - { role: intellij }
 
   - role: tomcat
     tomcat_version: 8.0.46

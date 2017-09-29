@@ -8,5 +8,5 @@ dependencies:
   - { role: postgresql }
 
   # Usage dependencies
-  - { role: eclipse }
+  - { role: intellij }
   - { role: nodejs }
