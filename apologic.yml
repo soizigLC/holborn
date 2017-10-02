@@ -23,3 +23,9 @@
     - { role: costarica }
     - { role: spoutnik }
     - { role: poc-gestion-versions, when: poc_gestion_versions }
+
+  tasks:
+
+    - name: update alternatives java
+      become: true
+      shell: update-alternatives --auto java
