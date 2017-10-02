@@ -17,3 +17,10 @@
       export JAVA_HOME="/opt/jdk/{{ oraclejdk_version }}"
       export ORIGINAL_JAVA_HOME="$JAVA_HOME"
       export PATH="$JAVA_HOME/bin:$PATH"
+
+- name: configuration | install alternative
+  become: true
+  alternatives:
+    name: java
+    path: /opt/jdk/{{ oraclejdk_version }}/bin/java
+    priority: "{{ oraclejdk_short_version }}"

@@ -7,4 +7,6 @@ lswa_create_db: true
 
 
 oraclejdk_version: 1.7.0_80
+oraclejdk_short_version: 7
+
 netbeans_version: 8.1
