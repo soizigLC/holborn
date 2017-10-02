@@ -21,6 +21,7 @@
 - name: configuration | install alternative
   become: true
   alternatives:
+    link: /usr/bin/java
     name: java
     path: /opt/jdk/{{ oraclejdk_version }}/bin/java
     priority: "{{ oraclejdk_short_version }}"
