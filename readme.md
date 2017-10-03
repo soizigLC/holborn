@@ -19,7 +19,7 @@ Ce projet utilise [Ansible](https://www.ansible.com/) pour automatiser la config
 
 * Cloner ce projet `git clone git@gitlab.com:SebastienM4j/holborn.git`
 * Installer [Ansible](https://www.ansible.com/) en suivant [cette procédure](http://docs.ansible.com/ansible/intro_installation.html)
-    * Pour Ubuntu, exécuter simplement le script `getstarted.sh`
+    * Pour Ubuntu, exécuter simplement le script `./getstarted.sh`
 
 
 Utilisation
@@ -40,14 +40,21 @@ Utilisation
     * Aller dans le répertoire de montage du CD
     * `sudo sh ./VBoxLinuxAdditions.run`
 
-* Créer un clé SSH `ssh-keygen -C "sebastien@email.com"`
-* Copier la clé publique `~/.ssh/id_rsa.pub` dans [GitLab](https://gitlab.com/profile/keys)
+* Clé SSH
+    * Pour récupérer une clé SSH d'une précédente VM
+        * Sur la précédente VM, copier le répertoire `~/.ssh` dans un répertoire de l'hôte `cp -R ~/.ssh /media/sf_something`
+        * Dans la nouvelle VM paramétrer ce même répertoire en tant que dossier partagé
+        * Pour pouvoir y accéder ajoute le groupe `vboxsf` à l'utilisateur avec `sudo usermod -a -G vboxsf sebastien`
+        * Puis copier le répertoire `.ssh` dans le home `cp -R /media/sf_something/.ssh ~/`
+    * Sinon créer une nouvelle clé
+        * Créer un clé SSH `ssh-keygen -C "sebastien@email.com"`
+        * Copier la clé publique `~/.ssh/id_rsa.pub` dans [GitLab](https://gitlab.com/profile/keys)
 
 * Installer Git `sudo apt-get install git`
 * Créer un répertoire pour accueillir le projet `mkdir -p /home/sebastien/workspace/private ; cd /home/sebastien/workspace/private`
 * Cloner ce projet `git clone git@gitlab.com:SebastienM4j/holborn.git ; cd holborn`
 * Installer [Ansible](https://www.ansible.com/) en suivant [cette procédure](http://docs.ansible.com/ansible/intro_installation.html)
-    * Pour Ubuntu, exécuter simplement le script `getstarted.sh`
+    * Pour Ubuntu, exécuter simplement le script `./getstarted.sh`
 
 #### Configuration d'une machine de développement personnelle
 
