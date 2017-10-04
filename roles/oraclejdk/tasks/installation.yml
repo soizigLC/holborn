@@ -21,7 +21,7 @@
     dest: /opt/jdk
 
 - name: installation | install in place
-  shell: mv /opt/jdk/jdk{{ oraclejdk_version }}/ /opt/jdk/{{ oraclejdk_version }}
+  shell: mv /opt/jdk/{{ oraclejdk_zipdir }}/ /opt/jdk/{{ oraclejdk_version }}
 
 - name: finalization | delete archive
   file:

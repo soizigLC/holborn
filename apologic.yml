@@ -10,7 +10,15 @@
   roles:
 
     # Java
+
     - { role: oraclejdk }
+
+    - role: oraclejdk
+      oraclejdk_version: 9
+      oraclejdk_short_version: 9
+      oraclejdk_url: http://download.oracle.com/otn-pub/java/jdk/9+181/jdk-9_linux-x64_bin.tar.gz
+      oraclejdk_zipdir: jdk-9
+      oraclejdk_config_workon: false
 
     # Private projects
     - { role: holborn }

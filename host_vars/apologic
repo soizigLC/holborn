@@ -21,6 +21,7 @@ archived_projects: false
 
 lswa_repo:
   - { name: trunk, branch: trunk }
+  - { name: trunk_btv2, branch: branches/trunk_btv2 }
   - { name: branch, branch: branches/v1/v1.46/v1.46.0 }
   - { name: patch, branch: branches/v1/v1.45/v1.45.x }
 

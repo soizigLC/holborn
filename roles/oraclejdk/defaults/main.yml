@@ -3,4 +3,5 @@
 oraclejdk_version: 1.8.0_144
 oraclejdk_short_version: 8
 oraclejdk_url: http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.tar.gz
+oraclejdk_zipdir: jdk{{ oraclejdk_version }}
 oraclejdk_config_workon: true
