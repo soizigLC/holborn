@@ -1,3 +1,4 @@
 ---
 
 openjdk_version: 8
+openjdk_config_workon: true

@@ -10,7 +10,13 @@
   roles:
 
     # Java
-    - { role: openjdk }
+    - role: openjdk
+      openjdk_version: 8
+      openjdk_config_workon: true
+
+    - role: openjdk
+      openjdk_version: 9
+      openjdk_config_workon: false
 
     # Private projects
     - { role: holborn }
