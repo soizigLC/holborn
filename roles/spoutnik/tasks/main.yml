@@ -41,6 +41,29 @@
     - spoutnik_synchro_lswa
 
 
+- name: configuration | git author
+  when: apologic_gitconfig_user_name is defined and apologic_gitconfig_user_email is defined
+  blockinfile:
+    dest: "{{ workspace_dir }}/apologic/spoutnik/{{ item }}/.git/config"
+    insertbefore: BOF
+    block: |
+      [user]
+          name = {{ apologic_gitconfig_user_name }}
+          email = {{ apologic_gitconfig_user_email }}
+  with_items:
+    - accueil
+    - actualite
+    - administration
+    - cas
+    - cas-compte
+    - configuration
+    - docs
+    - livrable
+    - parc-applicatif
+    - shared
+    - synchro-lswa
+    - tools
+
 - name: configuration | check .bashrc_workon is present
   stat:
     path: "{{ ansible_user_dir }}/.bashrc_workon"

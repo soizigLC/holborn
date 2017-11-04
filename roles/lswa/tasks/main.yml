@@ -29,6 +29,16 @@
     dest: "{{ workspace_dir }}/apologic/lswa/launcher"
 
 
+- name: configuration | git author
+  when: apologic_gitconfig_user_name is defined and apologic_gitconfig_user_email is defined
+  blockinfile:
+    dest: "{{ workspace_dir }}/apologic/lswa/launcher/.git/config"
+    insertbefore: BOF
+    block: |
+      [user]
+          name = {{ apologic_gitconfig_user_name }}
+          email = {{ apologic_gitconfig_user_email }}
+
 - name: configuration | check .bashrc_workon is present
   stat:
     path: "{{ ansible_user_dir }}/.bashrc_workon"

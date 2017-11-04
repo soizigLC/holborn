@@ -22,6 +22,16 @@
     - kilburn_dev
 
 
+- name: configuration | git author
+  when: home_gitconfig_user_name is defined and home_gitconfig_user_email is defined
+  blockinfile:
+    dest: "{{ workspace_dir }}/private/kilburn/.git/config"
+    insertbefore: BOF
+    block: |
+      [user]
+          name = {{ home_gitconfig_user_name }}
+          email = {{ home_gitconfig_user_email }}
+          
 - name: configuration | check .bashrc_workon is present
   stat:
     path: "{{ ansible_user_dir }}/.bashrc_workon"
