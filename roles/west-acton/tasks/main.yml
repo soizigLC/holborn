@@ -11,7 +11,7 @@
 
 - name: installation | clone
   git:
-    repo: git@github.com:SebastienM4j/west-acton.git
+    repo: git@gitlab.com:SebastienM4j/west-acton.git
     dest: "{{ workspace_dir }}/private/west-acton"
 
 
