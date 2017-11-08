@@ -8,32 +8,60 @@
   roles:
 
     # General
-    - { role: vbox }
-    - { role: dirs }
+    - role: vbox
+    - role: dirs
 
     # Terminal
-    - { role: tilix }
-    - { role: nass600.powerline }
-    - { role: powerline }
-    - { role: vim }
-    - { role: bash }
+    - role: tilix
+    - role: nass600.powerline
+    - role: powerline
+    - role: vim
+    - role: bash
 
     # Chrome
-    - { role: cmprescott.chrome, become: true }
+    - role: cmprescott.chrome
+      become: true
 
-    # Sublime Text
-    - { role: vaulttec.sublimetext }
-    - { role: theNewFlesh.sublime-config }
+    # Text Editors
+
+    - role: vaulttec.sublimetext
+    - role: theNewFlesh.sublime-config
+
+    - role: gantsign.atom
+      users:
+        - username: "{{ ansible_user }}"
+          atom_packages:
+            - file-icons
+            - autosave-onchange
+            - highlight-selected
+            - minimap
+            - minimap-highlight-selected
+            - markdown-preview-enhanced
+            - atom-ide-ui
+            - language-ansible
+            - language-gradle
+            - language-groovy
+            - language-sql
+          atom_config:
+            "*":
+              core:
+                projectHome: "{{ workspace_dir }}"
+                packagesWithKeymapsDisabled:
+                  - markdown-preview
+              editor:
+                fontSize: 12
+              "tree-view":
+                squashDirectoryNames: true
 
     # SCM
-    - { role: git }
-    - { role: kdiff3 }
+    - role: git
+    - role: kdiff3
 
     # Database
-    - { role: postgresql }
-    - { role: pgadmin4 }
+    - role: postgresql
+    - role: pgadmin4
 
     # Java
-    - { role: gradle }
-    - { role: intellij }
-    - { role: jdgui }
+    - role: gradle
+    - role: intellij
+    - role: jdgui
