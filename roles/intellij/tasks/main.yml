@@ -5,5 +5,5 @@
     path: /opt/intellij/{{ intellij_version }}
   register: intellij_installed
 
-- include: installation.yml
+- import_tasks: installation.yml
   when: intellij_installed.stat.isdir is not defined

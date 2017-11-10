@@ -5,5 +5,5 @@
     path: /opt/smartsvn/{{ smartsvn_version }}
   register: smartsvn_installed
 
-- include: installation.yml
+- import_tasks: installation.yml
   when: smartsvn_installed.stat.isdir is not defined

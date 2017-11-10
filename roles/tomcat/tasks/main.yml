@@ -5,5 +5,5 @@
     path: /opt/tomcat/{{ tomcat_version }}
   register: tomcat_installed
 
-- include: installation.yml
+- import_tasks: installation.yml
   when: tomcat_installed.stat.isdir is not defined

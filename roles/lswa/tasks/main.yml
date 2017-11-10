@@ -16,7 +16,7 @@
   with_items: "{{ lswa_repo }}"
   register: branch_installed
 
-- include: checkout.yml
+- include_tasks: checkout.yml
   with_items: "{{ branch_installed.results }}"
   loop_control:
     loop_var: branch_item

@@ -5,7 +5,7 @@
     path: /opt/jdk/{{ oraclejdk_version }}
   register: oraclejdk_installed
 
-- include: installation.yml
+- import_tasks: installation.yml
   when: oraclejdk_installed.stat.isdir is not defined
 
-- include: configuration.yml
+- import_tasks: configuration.yml

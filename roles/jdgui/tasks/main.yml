@@ -5,7 +5,7 @@
     path: /opt/jdgui/jd-gui-{{ jdgui_version }}.jar
   register: jdgui_installed
 
-- include: installation.yml
+- import_tasks: installation.yml
   when: jdgui_installed.stat.exists == false
 
-- include: configuration.yml
+- import_tasks: configuration.yml
