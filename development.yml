@@ -37,21 +37,30 @@
             - minimap
             - minimap-highlight-selected
             - markdown-preview-enhanced
-            - atom-ide-ui
-            - language-ansible
             - language-gradle
             - language-groovy
             - language-sql
+          atom_config_overwrite: true
           atom_config:
             "*":
               core:
                 projectHome: "{{ workspace_dir }}"
                 packagesWithKeymapsDisabled:
                   - markdown-preview
+                telemetryConsent: "limited"
               editor:
                 fontSize: 12
+              welcome:
+                showOnStartup: false
+              minimap:
+                plugins:
+                  "highlight-selected": true
+                  "highlight-selectedDecorationsZIndex": 0
               "tree-view":
                 squashDirectoryNames: true
+              whitespace:
+                ensureSingleTrailingNewline: false
+                removeTrailingWhitespace: false
 
     # SCM
     - role: git
