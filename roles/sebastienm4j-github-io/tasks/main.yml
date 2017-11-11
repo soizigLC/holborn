@@ -52,6 +52,12 @@
 
           workon_log "GIT"
           git --version
+          
+          workon_log "NODEJS"
+          node -v
+
+          workon_log "NPM"
+          npm -version
 
           workon_log_end
           ;;

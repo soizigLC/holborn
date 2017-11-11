@@ -46,3 +46,6 @@
     - role: gradle
     - role: intellij
     - role: jdgui
+    
+    # Front
+    - role: nodejs
