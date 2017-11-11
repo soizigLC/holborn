@@ -24,6 +24,7 @@
     - { role: holborn }
     - { role: kilburn, when: kilburn }
     - { role: west-acton, when: west_acton }
+    - { role: sebastienm4j-github-io, when: sebastienm4j_github_io }
     - { role: archived-projects, when: archived_projects }
 
     # Apologic projects

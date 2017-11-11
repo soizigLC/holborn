@@ -1,0 +1,5 @@
+---
+# sebastienm4j.github.io project installation and configuration role
+
+dependencies:
+  - role: git

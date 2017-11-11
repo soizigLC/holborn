@@ -19,9 +19,10 @@
       openjdk_config_workon: false
 
     # Private projects
-    - { role: holborn }
-    - { role: kilburn }
-    - { role: west-acton }
+    - role: holborn
+    - role: kilburn
+    - role: west-acton
+    - role: sebastienm4j-github-io
     - { role: archived-projects, when: archived_projects }
 
     # Apologic projects
