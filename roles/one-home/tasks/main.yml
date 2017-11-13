@@ -1,0 +1,67 @@
+---
+
+- name: directory
+  become: true
+  file:
+    path: "{{ workspace_dir }}/apologic/one-home"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    recurse: true
+
+- name: clone
+  git:
+    repo: http://git.phmd.net/one-home/{{ item }}.git
+    dest: "{{ workspace_dir }}/apologic/one-home/{{ item }}"
+  with_items:
+    - pocv1-brainstormings
+    - up-multipass
+
+
+- name: configuration | git author
+  when: apologic_gitconfig_user_name is defined and apologic_gitconfig_user_email is defined
+  blockinfile:
+    dest: "{{ workspace_dir }}/apologic/one-home/{{ item }}/.git/config"
+    insertbefore: BOF
+    block: |
+      [user]
+          name = {{ apologic_gitconfig_user_name }}
+          email = {{ apologic_gitconfig_user_email }}
+  with_items:
+    - pocv1-brainstormings
+    - up-multipass
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate one-home .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @WORKON_CASE"
+    marker: "# {mark} ANSIBLE ONE-HOME WORKON"
+    block: |
+      one-home|oh)
+          cd "{{ workspace_dir }}/apologic/one-home"
+
+          export JAVA_HOME="$ORIGINAL_JAVA_HOME"
+          export GRADLE_HOME="$ORIGINAL_GRADLE_HOME"
+          export PATH="$ORIGINAL_PATH"
+
+          workon_log_title
+
+          workon_log "One-Home"  
+          pwd
+
+          workon_log "GIT"
+          git --version
+          
+          workon_log "JAVA"
+          java -version
+
+          workon_log "GRADLE" "$(gradle -version)"
+
+          workon_log_end
+          ;;

@@ -31,6 +31,7 @@
     - { role: lswa }
     - { role: costarica }
     - { role: spoutnik }
+    - { role: one-home }
     - { role: poc-gestion-versions, when: poc_gestion_versions }
 
   tasks:

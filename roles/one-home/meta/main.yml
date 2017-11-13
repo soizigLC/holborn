@@ -1,0 +1,5 @@
+---
+# One-Home project installation and configuration role
+
+dependencies:
+  - role: git
