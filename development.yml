@@ -35,7 +35,7 @@
           atom_config: "{{ atom_config }}"
           
     - role: gantsign.visual-studio-code
-      when: "{{ vscode }}"
+      when: vscode
       users:
         - username: "{{ ansible_user }}"
           visual_studio_code_extensions: "{{ vscode_extensions }}"
