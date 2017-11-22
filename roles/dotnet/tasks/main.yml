@@ -1,0 +1,30 @@
+---
+
+- name: installation | install prerequisites
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - apt-transport-https
+
+- name: installation | add apt-key
+  become: true
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: installation | add repository
+  become: true
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-{{ ansible_distribution | lower }}-{{ ansible_distribution_release | lower }}-prod {{ ansible_distribution_release | lower }} main"
+    state: present
+
+- name: installation | install dotnet packages
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ dotnet_packages }}"
