@@ -71,6 +71,13 @@ atom_config:
       removeTrailingWhitespace: false
 
 
+# VS Code
+
+vscode: false
+vscode_extensions: []
+vscode_settings: # JSON Obect
+
+
 # Eclipse
 
 eclipse_plugins:
