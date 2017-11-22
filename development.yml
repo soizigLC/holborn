@@ -49,3 +49,6 @@
     
     # Front
     - role: nodejs
+    
+    # Docker
+    - role: docker
