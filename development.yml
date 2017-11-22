@@ -53,6 +53,10 @@
     - role: gradle
     - role: intellij
     - role: jdgui
+
+    # DotNet
+    - role: dotnet
+      when: dotnet
     
     # Front
     - role: nodejs
