@@ -9,17 +9,10 @@
     group: "{{ ansible_user }}"
     recurse: true
 
-- name: installation | checkout
-  environment:
-    - LC_ALL: en_US.UTF-8
-    - LC_CTYPE: en_US.UTF-8
-  subversion:
-    repo: http://81.255.60.234/usvn/svn/costarica/{{ item.branch }}
-    dest: "{{ workspace_dir }}/apologic/costarica/{{ item.name }}"
-    username: "{{ apologic_svn_login }}"
-    password: "{{ apologic_svn_password }}"
-  with_items: "{{ costarica_repo }}"
-  ignore_errors: true
+- name: installation | clone
+  git:
+    repo: http://git.phmd.net/costarica/portail.git
+    dest: "{{ workspace_dir }}/apologic/costarica/portail"
 
 - name: installation | create database
   when: costarica_create_db
@@ -52,8 +45,8 @@
           workon_log "Costarica"  
           pwd
 
-          workon_log "SVN"
-          svn --version --quiet
+          workon_log "GIT"
+          git --version
 
           workon_log "JAVA"
           java -version
