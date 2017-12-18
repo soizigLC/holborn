@@ -12,4 +12,4 @@ dependencies:
   - { role: intellij }
 
   - role: tomcat
-    tomcat_version: 8.0.46
+    tomcat_version: 8.0.48
