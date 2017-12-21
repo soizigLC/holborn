@@ -17,8 +17,7 @@
 - name: installation | create database
   when: costarica_create_db
   postgresql_db:
-    name: costarica_{{ item.name }}
-  with_items: "{{ costarica_repo }}"
+    name: costarica_portail
 
 
 - name: configuration | check .bashrc_workon is present

@@ -1,6 +1,3 @@
 ---
 
-costarica_repo:
-  - { name: trunk, branch: trunk }
-  
 costarica_create_db: true
