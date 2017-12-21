@@ -1,0 +1,8 @@
+---
+  
+onehome_repo:
+  - { name: pocv1-brainstormings, path: one-home/pocv1-brainstormings }
+  - { name: up-multipass, path: one-home/up-multipass }
+  - { name: multipass, path: one-home/multipass }
+  - { name: mom-polyglot-test, path: one-home/mom-polyglot-test }
+  - { name: briefcase, path: sebastien.mouquet/one-home-briefcase }

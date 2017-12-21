@@ -1,6 +1,6 @@
 ---
 
-- name: directory
+- name: installation | directory
   become: true
   file:
     path: "{{ workspace_dir }}/apologic/one-home"
@@ -9,27 +9,23 @@
     group: "{{ ansible_user }}"
     recurse: true
 
-- name: clone
+- name: installation | clone
   git:
-    repo: http://git.phmd.net/one-home/{{ item }}.git
-    dest: "{{ workspace_dir }}/apologic/one-home/{{ item }}"
-  with_items:
-    - pocv1-brainstormings
-    - up-multipass
+    repo: http://git.phmd.net/{{ item.path }}.git
+    dest: "{{ workspace_dir }}/apologic/one-home/{{ item.name }}"
+  with_items: "{{ onehome_repo }}"
 
 
 - name: configuration | git author
   when: apologic_gitconfig_user_name is defined and apologic_gitconfig_user_email is defined
   blockinfile:
-    dest: "{{ workspace_dir }}/apologic/one-home/{{ item }}/.git/config"
+    dest: "{{ workspace_dir }}/apologic/one-home/{{ item.name }}/.git/config"
     insertbefore: BOF
     block: |
       [user]
           name = {{ apologic_gitconfig_user_name }}
           email = {{ apologic_gitconfig_user_email }}
-  with_items:
-    - pocv1-brainstormings
-    - up-multipass
+  with_items: "{{ onehome_repo }}"
 
 - name: configuration | check .bashrc_workon is present
   stat:
