@@ -35,9 +35,10 @@ alias 14='bastion'
 
 # lswa préprod
 
+alias lswa-pp2='ssh glassfish@192.168.1.163'
 alias 163='lswa-pp2'
-alias lswa-pp2-glassfish='ssh glassfish@192.168.1.163'
-alias 163g='lswa-pp2-glassfish'
+alias lswa-pp2-postgres='ssh postgres@192.168.1.163'
+alias 163p='lswa-pp2-postgres'
 
 alias lswa-pp3='ssh root@192.168.1.164'
 alias 164='lswa-pp3'
