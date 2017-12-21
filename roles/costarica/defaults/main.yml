@@ -1,3 +1,7 @@
 ---
+  
+costarica_repo:
+  - { name: portail, path: costarica/portail }
+  - { name: briefcase, path: sebastien.mouquet/costarica-briefcase }
 
 costarica_create_db: true

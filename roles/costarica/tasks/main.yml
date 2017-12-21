@@ -11,14 +11,26 @@
 
 - name: installation | clone
   git:
-    repo: http://git.phmd.net/costarica/portail.git
-    dest: "{{ workspace_dir }}/apologic/costarica/portail"
+    repo: http://git.phmd.net/{{ item.path }}.git
+    dest: "{{ workspace_dir }}/apologic/costarica/{{ item.name }}"
+  with_items: "{{ costarica_repo }}"
 
 - name: installation | create database
   when: costarica_create_db
   postgresql_db:
     name: costarica_portail
 
+
+- name: configuration | git author
+  when: apologic_gitconfig_user_name is defined and apologic_gitconfig_user_email is defined
+  blockinfile:
+    dest: "{{ workspace_dir }}/apologic/costarica/{{ item.name }}/.git/config"
+    insertbefore: BOF
+    block: |
+      [user]
+          name = {{ apologic_gitconfig_user_name }}
+          email = {{ apologic_gitconfig_user_email }}
+  with_items: "{{ costarica_repo }}"
 
 - name: configuration | check .bashrc_workon is present
   stat:
