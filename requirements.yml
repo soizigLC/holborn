@@ -17,3 +17,6 @@
 
 # Atom
 - src: gantsign.atom
+
+# VS Code
+- src: gantsign.visual-studio-code

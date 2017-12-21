@@ -22,7 +22,7 @@
     - role: cmprescott.chrome
       become: true
 
-    # Text Editors
+    # Text Editors or IDE
 
     - role: vaulttec.sublimetext
     - role: theNewFlesh.sublime-config
@@ -33,6 +33,13 @@
           atom_packages: "{{ atom_packages }}"
           atom_config_overwrite: true
           atom_config: "{{ atom_config }}"
+          
+    - role: gantsign.visual-studio-code
+      when: vscode
+      users:
+        - username: "{{ ansible_user }}"
+          visual_studio_code_extensions: "{{ vscode_extensions }}"
+          visual_studio_code_settings: "{{ vscode_settings }}"
 
     # SCM
     - role: git
@@ -46,6 +53,10 @@
     - role: gradle
     - role: intellij
     - role: jdgui
+
+    # DotNet
+    - role: dotnet
+      when: dotnet
     
     # Front
     - role: nodejs

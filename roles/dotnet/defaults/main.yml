@@ -1,0 +1,4 @@
+---
+
+dotnet_packages:
+  - dotnet-sdk-2.0.3
