@@ -73,9 +73,10 @@ atom_config:
 
 # VS Code
 
-vscode: false
+vscode: true
 vscode_extensions: []
-vscode_settings: # JSON Obect
+vscode_settings:
+  "files.autoSave": "afterDelay"
 
 
 # DotNet
