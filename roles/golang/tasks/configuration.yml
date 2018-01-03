@@ -16,5 +16,7 @@
     block: |
       export GOROOT="/opt/go/{{ golang_version }}"
       export ORIGINAL_GOROOT="$GOROOT"
-      export PATH="$GOROOT/bin:$PATH"
+      export GOPATH="{{ golang_workspace_dir }}"
+      export ORIGINAL_GOPATH="$GOPATH"
+      export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
       

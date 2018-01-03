@@ -21,8 +21,19 @@
 - name: installation | install in place
   shell: mv /opt/go/go/ /opt/go/{{ golang_version }}
   
+- name: installation | create workspace
+  become: true
+  file:
+    path: "{{ golang_workspace_dir }}/{{ item }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items:
+    - bin
+    - pkg
+    - src
   
-- name: finalization | delete archive
+- name: installation | delete archive
   file:
     path: /tmp/golang.tar.gz
     state: absent
