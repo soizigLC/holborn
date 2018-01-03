@@ -17,6 +17,9 @@
     - role: openjdk
       openjdk_version: 9
       openjdk_config_workon: false
+      
+    # Golang
+    - role: golang
 
     # Private projects
     - role: holborn

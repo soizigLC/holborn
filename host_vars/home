@@ -30,6 +30,11 @@ apologic_gitconfig_user_email: !vault |
 
 vscode_extensions:
   - lukehoban.go
+  
+  
+# Golang
+
+golang_workspace_dir: "{{ workspace_dir }}/private/go"
 
 
 # Projects
