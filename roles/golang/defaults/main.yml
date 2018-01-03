@@ -1,0 +1,4 @@
+---
+  
+golang_version: 1.9.2
+golang_config_workon: true
