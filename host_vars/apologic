@@ -29,13 +29,6 @@ home_gitconfig_user_name: Sébastien M
 home_gitconfig_user_email: 27871201+SebastienM4j@users.noreply.github.com
 
 
-# VS Code
-
-vscode: true
-vscode_extensions: []
-vscode_settings: # JSON Obect
-
-
 # DotNet
 
 dotnet: true

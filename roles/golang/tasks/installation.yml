@@ -1,0 +1,39 @@
+---
+  
+- name: installation | download archive
+  get_url:
+    url: https://redirector.gvt1.com/edgedl/go/go{{ golang_version }}.linux-amd64.tar.gz
+    dest: /tmp/golang.tar.gz
+    
+- name: installation | create parent directory
+  become: true
+  file:
+    path: /opt/go
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: installation | unarchive
+  unarchive:
+    src: /tmp/golang.tar.gz
+    dest: /opt/go
+
+- name: installation | install in place
+  shell: mv /opt/go/go/ /opt/go/{{ golang_version }}
+  
+- name: installation | create workspace
+  become: true
+  file:
+    path: "{{ golang_workspace_dir }}/{{ item }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items:
+    - bin
+    - pkg
+    - src
+  
+- name: installation | delete archive
+  file:
+    path: /tmp/golang.tar.gz
+    state: absent

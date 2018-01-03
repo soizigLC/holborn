@@ -1,0 +1,11 @@
+---
+
+- name: preparation | check if already installed
+  stat:
+    path: /opt/go/{{ golang_version }}
+  register: golang_installed
+  
+- import_tasks: installation.yml
+  when: golang_installed.stat.isdir is not defined
+  
+- import_tasks: configuration.yml

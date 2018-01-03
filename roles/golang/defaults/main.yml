@@ -1,0 +1,5 @@
+---
+  
+golang_version: 1.9.2
+golang_config_workon: true
+golang_workspace_dir: "{{ workspace_dir }}/go"

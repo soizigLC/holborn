@@ -1,0 +1,22 @@
+---
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate env vars in .bashrc_workon
+  when:
+    - bashrc_workon.stat.exists
+    - golang_config_workon
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @PATHOME"
+    marker: "# {mark} ANSIBLE GOLANG WORKON"
+    block: |
+      export GOROOT="/opt/go/{{ golang_version }}"
+      export ORIGINAL_GOROOT="$GOROOT"
+      export GOPATH="{{ golang_workspace_dir }}"
+      export ORIGINAL_GOPATH="$GOPATH"
+      export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+      
