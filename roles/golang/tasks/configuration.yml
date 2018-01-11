@@ -20,3 +20,33 @@
       export ORIGINAL_GOPATH="$GOPATH"
       export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
       
+- name: configuration | generate go .bashrc_workon
+  when:
+    - bashrc_workon.stat.exists
+    - golang_config_workon
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @WORKON_CASE"
+    marker: "# {mark} ANSIBLE GOLANG WORKON"
+    block: |
+      golang|go)
+          cd "{{ golang_workspace_dir }}"
+
+          export GOROOT="$ORIGINAL_GOROOT"
+          export GOPATH="$ORIGINAL_GOPATH"
+          export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+
+          workon_log_title
+
+          workon_log "Go"  
+          pwd
+
+          workon_log "GIT"
+          git --version
+
+          workon_log "Golang"
+          go version
+
+          workon_log_end
+          ;;
+      
