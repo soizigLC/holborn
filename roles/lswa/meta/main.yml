@@ -22,4 +22,4 @@ dependencies:
     netbeans_version: 8.1
 
   - role: tomcat
-    tomcat_version: 8.0.48
+    tomcat_version: 8.0.50
