@@ -1,0 +1,27 @@
+---
+
+- name: installation | download archive
+  get_url:
+    url: "{{ maven_url }}"
+    dest: /tmp/{{ maven_filename }}
+
+- name: installation | create parent directory
+  become: true
+  file:
+    path: /opt/maven
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: installation | unarchive
+  unarchive:
+    src: /tmp/{{ maven_filename }}
+    dest: /opt/maven
+
+- name: installation | install in place
+  shell: mv /opt/maven/apache-maven-{{ maven_version }}/ /opt/maven/{{ maven_version }}
+
+- name: finalization | delete archive
+  file:
+    path: /tmp/{{ maven_filename }}
+    state: absent

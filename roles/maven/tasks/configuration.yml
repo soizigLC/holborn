@@ -1,0 +1,17 @@
+---
+
+- name: configuration | check .bashrc_workon is present
+  stat:
+    path: "{{ ansible_user_dir }}/.bashrc_workon"
+  register: bashrc_workon
+
+- name: configuration | generate env vars in .bashrc_workon
+  when: bashrc_workon.stat.exists
+  blockinfile:
+    dest: "{{ ansible_user_dir }}/.bashrc_workon"
+    insertafter: "# @PATHOME"
+    marker: "# {mark} ANSIBLE maven WORKON"
+    block: |
+      export M2_HOME="/opt/maven/{{ maven_version }}"
+      export ORIGINAL_M2_HOME="$M2_HOME"
+      export PATH="$M2_HOME/bin:$PATH"

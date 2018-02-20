@@ -1,0 +1,6 @@
+---
+  
+maven_major: 3
+maven_version: 3.5.2
+maven_filename: apache-maven-{{ maven_version }}-bin.tar.gz
+maven_url: http://www-eu.apache.org/dist/maven/maven-{{ maven_major }}/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.tar.gz
