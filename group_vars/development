@@ -48,6 +48,7 @@ atom_packages:
   - language-gradle
   - language-groovy
   - language-sql
+  - pretty-json
 
 atom_config:
   "*":
